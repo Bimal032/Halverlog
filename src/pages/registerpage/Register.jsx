@@ -36,7 +36,7 @@ const Register = () => {
             placeholder="Confirm Password"
             className={`block w-3/4 h-12 p-2 pl-5 mt-5 text-white ${Style.input}`}
           />
-          <button className={`w-3/6 h-10 mt-6 text-white ${Style.button}`}>
+          <button className={`w-3/6 h-10 mt-6 text-white rounded-[52px] bg-[rgba(255, 89, 89, 1)]`}>
             Register
           </button>
           <p className="text-white text-xs mt-3">
