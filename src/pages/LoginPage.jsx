@@ -13,7 +13,13 @@ const LoginPage = () => {
           className="h-auto w-full rounded-3xl brightness-75"
         />
         <div
-          className={`flex flex-1 flex-col absolute content-center items-center w-1/4 h-[70%] backdrop-blur mt-12 ${Style.form}`}
+          className={`flex flex-1 flex-col absolute content-center items-center w-1/4 h-[70%] backdrop-blur mt-12   bg-['linear-gradient(0deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.01)),
+          linear-gradient(0deg, rgba(217, 217, 217, 0.05), rgba(217, 217, 217, 0.05))'] 
+        border-[1px] border-[rgba(0, 0, 0, 0.01)]
+        box-shadow-['-1px -1px 9px 2px rgba(255, 255, 255, 0.18)']
+        min-w-[280px]
+        min-h-[520px]
+        rounded-[25px]`}
         >
           <h3 className="text-2xl text-center text-white font-semibold mt-14">
             Welcome
