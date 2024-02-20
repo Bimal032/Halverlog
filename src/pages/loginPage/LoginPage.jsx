@@ -1,46 +1,37 @@
 import Style from "./login.module.css";
-import Register from "../registerPage/Register";
 
 const LoginPage = () => {
   return (
     <div
-      className={`flex justify-center items-center h-screen bg-[url('/img/background.jpeg')]`}
+      className={`flex justify-center items-center h-screen bg-[url('/img/background.jpeg')] min-h-[640px] min-w-[360px]`}
     >
       <div
-        className={`flex w-4/5 h-5/6 rounded-3xl justify-center shadow-[0px_19px_11px_10px_rgba(0,0,0,0.35)] min-h-[550px]`}
+        className={`flex w-4/5 h-5/6 rounded-3xl justify-center ${Style.login}`}
       >
         <img
           src="/img/login.jpeg"
           alt="bg"
-          className="h-auto w-full rounded-3xl brightness-75"
+          className=" w-full rounded-3xl brightness-75"
         />
         <div
-          className={`flex flex-1 flex-col absolute content-center items-center w-1/4 h-[70%] backdrop-blur mt-12   bg-['linear-gradient(0deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.01)),
-          linear-gradient(0deg, rgba(217, 217, 217, 0.05), rgba(217, 217, 217, 0.05))'] 
-        border-[1px] border-[rgba(0, 0, 0, 0.01)]
-        box-shadow-['-1px -1px 9px 2px rgba(255, 255, 255, 0.18)']
-        min-w-[280px]
-        min-h-[520px]
-        rounded-[25px]`}
+          className={`flex flex-1 flex-col absolute content-center items-center w-1/4 h-[70%] backdrop-blur mt-12  ${Style.form}`}
         >
-          <div className="w-40 h-24 flex justify-center items-center mt-6">
+          <div className="w-48 h-24 flex justify-center items-center mt-4 ml-[-10px]">
             <img
               src="/icons/halverlog.png"
               alt="logo"
-              className="absolute h-[42%] ml-[-10px] z-[-1]"
+              className=" relative z-[-1] brightness-110"
             />
           </div>
           <input
             type="email"
             placeholder="Email"
-            className={`block w-3/4 h-12 p-2 pl-5 mt-3 text-black bg-[rgba(217, 217, 217, 0.2)]
-            shadow-[-2px -1px 3px 1px rgba(255, 255, 255, 0.34)] rounded-[32px]  `}
+            className={`block w-3/4 h-12 p-2 pl-5 mt-5 ${Style.input}`}
           />
           <input
             type="password"
             placeholder="Password"
-            className={`block w-3/4 h-12 p-2 pl-5 mt-6 text-black bg-[rgba(217, 217, 217, 0.2)]
-            shadow-[-2px -1px 3px 1px rgba(255, 255, 255, 0.34)] rounded-[32px]`}
+            className={`block w-3/4 h-12 p-2 pl-5 mt-6 ${Style.input}`}
           />
           <p className="text-white mt-5 text-sm">
             <a href="#">Forget password?</a>
@@ -72,7 +63,9 @@ const LoginPage = () => {
           </div>
           <p className="text-white text-xs mt-3">
             don't have an account ?
-            <a href='./register' className="text-blue-500 ml-1">Register</a>
+            <a href="./register" className="text-blue-500 ml-1">
+              Register
+            </a>
           </p>
         </div>
       </div>

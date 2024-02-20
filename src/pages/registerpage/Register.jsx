@@ -2,7 +2,7 @@ import Style from "./Register.module.css";
 const Register = () => {
   return (
     <div
-      className={`flex justify-center items-center h-screen ${Style["background"]}`}
+      className={`flex justify-center items-center h-screen min-h-[640px] min-w-[360px] ${Style["background"]}`}
     >
       <div className={`flex w-4/5 h-5/6 rounded-3xl ${Style.login}`}>
         <img
@@ -13,11 +13,11 @@ const Register = () => {
         <div
           className={`flex flex-1 flex-col absolute content-center items-center w-1/4 h-[70%] backdrop-blur mt-12 ${Style.form}`}
         >
-          <div className="w-40 h-24 flex justify-center items-center mt-6">
+          <div className="w-48 h-24 flex justify-center items-center mt-4 ml-[-10px]">
             <img
               src="/icons/halverlog.png"
               alt="logo"
-              className="absolute h-[42%] ml-[-10px] z-[-1]"
+              className="relative z-[-1] brightness-110"
             />
           </div>
           <input
