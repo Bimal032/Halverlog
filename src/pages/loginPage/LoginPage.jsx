@@ -1,4 +1,5 @@
 import Style from "./login.module.css";
+import Register from "../registerPage/Register";
 
 const LoginPage = () => {
   return (
@@ -23,11 +24,10 @@ const LoginPage = () => {
         rounded-[25px]`}
         >
           <div className="w-40 h-24 flex justify-center items-center mt-6">
-            
             <img
               src="/icons/halverlog.png"
               alt="logo"
-              className="absolute h-[22%] ml-[-10px] z-[-1]"
+              className="absolute h-[42%] ml-[-10px] z-[-1]"
             />
           </div>
           <input
