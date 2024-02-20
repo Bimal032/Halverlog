@@ -1,7 +1,5 @@
 import Style from "./login.module.css";
-import Register from "../registerpage/Register";
-
-
+import Register from "../registerPage/Register";
 
 const LoginPage = () => {
   return (
@@ -25,13 +23,17 @@ const LoginPage = () => {
         min-h-[520px]
         rounded-[25px]`}
         >
-          <h3 className="text-2xl text-center text-white font-semibold mt-14">
-            Welcome
-          </h3>
+          <div className="w-40 h-24 flex justify-center items-center mt-6">
+            <img
+              src="/icons/halverlog.png"
+              alt="logo"
+              className="absolute h-[42%] ml-[-10px] z-[-1]"
+            />
+          </div>
           <input
             type="email"
             placeholder="Email"
-            className={`block w-3/4 h-12 p-2 pl-5 mt-12 text-black bg-[rgba(217, 217, 217, 0.2)]
+            className={`block w-3/4 h-12 p-2 pl-5 mt-3 text-black bg-[rgba(217, 217, 217, 0.2)]
             shadow-[-2px -1px 3px 1px rgba(255, 255, 255, 0.34)] rounded-[32px]  `}
           />
           <input
@@ -43,8 +45,10 @@ const LoginPage = () => {
           <p className="text-white mt-5 text-sm">
             <a href="#">Forget password?</a>
           </p>
-          
-          <button className={`w-2/6 h-10 mt-4 text-white rounded-[52px] bg-[#FF5959]`}>
+
+          <button
+            className={`w-2/6 h-10 mt-4 text-white rounded-[52px] bg-[#FF5959]`}
+          >
             Login
           </button>
           <p className="text-white mt-4 text-xs">OR LOGIN WITH</p>
@@ -67,10 +71,7 @@ const LoginPage = () => {
             </a>
           </div>
           <p className="text-white text-xs mt-3">
-            don't have an account{" "}
-            <a  className="text-blue-500">
-              Register
-            </a>
+            don't have an account <a className="text-blue-500">Register</a>
           </p>
         </div>
       </div>

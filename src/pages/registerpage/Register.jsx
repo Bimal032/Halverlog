@@ -13,13 +13,17 @@ const Register = () => {
         <div
           className={`flex flex-1 flex-col absolute content-center items-center w-1/4 h-[70%] backdrop-blur mt-12 ${Style.form}`}
         >
-          <h3 className="text-2xl text-center text-white font-semibold mt-12">
-            Register
-          </h3>
+          <div className="w-40 h-24 flex justify-center items-center mt-6">
+            <img
+              src="/icons/halverlog.png"
+              alt="logo"
+              className="absolute h-[42%] ml-[-10px] z-[-1]"
+            />
+          </div>
           <input
             type="username"
             placeholder="Username"
-            className={`block w-3/4 h-12 p-2 pl-5 mt-12 text-white ${Style.input}`}
+            className={`block w-3/4 h-12 p-2 pl-5 mt-3 text-white ${Style.input}`}
           />
           <input
             type="email"
@@ -36,7 +40,9 @@ const Register = () => {
             placeholder="Confirm Password"
             className={`block w-3/4 h-12 p-2 pl-5 mt-5 text-white ${Style.input}`}
           />
-          <button className={`w-3/6 h-10 mt-6 text-white rounded-[52px] bg-[rgba(255, 89, 89, 1)]`}>
+          <button
+            className={`w-3/6 h-10 mt-6 text-white rounded-[52px] bg-[rgba(255,89,89,1)]`}
+          >
             Register
           </button>
           <p className="text-white text-xs mt-3">
