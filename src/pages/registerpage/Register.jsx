@@ -1,60 +1,73 @@
-import Style from "./Register.module.css";
+import { FaUserTie } from "react-icons/fa6";
+import { BiSolidLock } from "react-icons/bi";
+
 const Register = () => {
   return (
-    <div
-      className={`flex justify-center items-center h-screen min-h-[640px] min-w-[360px] ${Style["background"]}`}
-    >
-      <div className={`flex w-4/5 h-5/6 rounded-3xl ${Style.login}`}>
-        <img
-          src="/img/register.png"
-          alt="bg"
-          className="h-auto w-full rounded-3xl brightness-75"
-        />
-        <div
-          className={`flex flex-1 flex-col absolute content-center items-center w-1/4 h-[70%] backdrop-blur mt-12 ${Style.form}`}
-        >
-          <div className="w-48 h-24 flex justify-center items-center mt-4 ml-[-10px]">
-            <img
-              src="/icons/halverlog.png"
-              alt="logo"
-              className="relative z-[-1] brightness-110"
+    <div className="flex flex-auto justify-center items-center h-full w-full bg-[#e4f0f7] min-w-fit min-h-max">
+      <div className="flex flex-col w-1/4 h-4/5 p-4 justify-evenly shrink items-center bg-[#ECEEF0] shadow-[-4px_-4px_19px_11px_rgba(255,255,255,1),14px_19px_36px_8px_rgba(0,0,0,0.6)] rounded-[10%] min-h-[480px] min-w-max">
+        <div className="rounded-full w-24 h-24 p-3 flex shrink bg-[#ECEEF0] shadow-[-6px_-3px_17px_0px_rgba(255,255,255,1),7px_6px_13px_0px_rgba(0,0,0,0.31)]">
+          <img src="/icons/user.png" alt="logo" />
+        </div>
+        <div className="flex flex-col w-full items-center mt-4">
+          <div className="flex flex-row items-center bg-[#ECEEF0] w-4/5 h-[45px] px-6 shadow-[-4px_-4px_12px_0px_rgba(255,255,255,1)_inset,4px_2px_12px_0px_rgba(0,0,0,0.25)_inset] rounded-3xl hover:scale-105  hover:border-sky-600  duration-500 ">
+            <FaUserTie color="black" size={20} />
+            <input
+              type="username"
+              placeholder="username"
+              className="outline-none bg-inherit flex-1 mx-3"
             />
           </div>
-          <input
-            type="username"
-            placeholder="Username"
-            className={`block w-3/4 h-12 p-2 pl-5 mt-3 text-white ${Style.input}`}
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            className={`block w-3/4 h-12 p-2 pl-5 mt-5 text-white ${Style.input}`}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className={`block w-3/4 h-12 p-2 pl-5 mt-5 text-white ${Style.input}`}
-          />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            className={`block w-3/4 h-12 p-2 pl-5 mt-5 text-white ${Style.input}`}
-          />
-          <button
-            className={`w-3/6 h-10 mt-6 text-white rounded-[52px] bg-[rgba(255,89,89,1)]`}
-          >
+          <div className="px-10 hidden">
+            <p className="text-red-500">
+              The username you entered already taken
+            </p>
+          </div>
+          <div className="flex flex-row items-center bg-[#ECEEF0] w-4/5 h-[45px] px-6 shadow-[-4px_-4px_12px_0px_rgba(255,255,255,1)_inset,4px_2px_12px_0px_rgba(0,0,0,0.25)_inset] rounded-3xl hover:scale-105  hover:border-sky-600  duration-500 mt-4">
+            <FaUserTie color="black" size={20} />
+            <input
+              type="email"
+              placeholder="Email"
+              className="outline-none bg-inherit flex-1 mx-3"
+            />
+          </div>
+          <div className="px-10 hidden">
+            <p className="text-red-500">
+              The email you entered is already connected to an account
+            </p>
+          </div>
+          <div className="flex flex-row items-center bg-[#ECEEF0] w-4/5 h-[45px] px-6 hover:scale-105 duration-500 shadow-[-4px_-4px_12px_0px_rgba(255,255,255,1)_inset,4px_2px_12px_0px_rgba(0,0,0,0.25)_inset] rounded-3xl mt-4">
+            <BiSolidLock color="black" size={20} />
+            <input
+              type="password"
+              placeholder="password"
+              className="outline-none bg-inherit flex-1 mx-3"
+            />
+          </div>
+          <div className="flex flex-row items-center bg-[#ECEEF0] w-4/5 h-[45px] px-6 hover:scale-105 duration-500 shadow-[-4px_-4px_12px_0px_rgba(255,255,255,1)_inset,4px_2px_12px_0px_rgba(0,0,0,0.25)_inset] rounded-3xl mt-4">
+            <BiSolidLock color="black" size={20} />
+            <input
+              type="password"
+              placeholder="confirm password"
+              className="outline-none bg-inherit flex-1 mx-3"
+            />
+          </div>
+          <div className="px-10 hidden">
+            <p className="text-red-500">
+              Password must be 8 digit and contains capital,number,symbol
+            </p>
+          </div>
+          <button className="w-4/5 h-[45px] bg-[#4482BF] rounded-3xl text-white font-semibold mt-4 hover:scale-105 duration-500 shadow-[-5px_-4px_16px_0px_rgba(255,255,255,1),4px_5px_13px_0px_rgba(0,0,0,0.63)]">
             Register
           </button>
-          <p className="text-white text-xs mt-3">
-            Already have an account{" "}
-            <a href="./login" className="text-blue-500">
+          <span className="text-xs text-gray-500 font-semibold mt-3">
+            Already have an account ?
+            <a href="" className="text-sky-600 ml-1">
               Login
             </a>
-          </p>
+          </span>
         </div>
       </div>
     </div>
   );
 };
-
 export default Register;
