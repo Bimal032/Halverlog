@@ -4,17 +4,19 @@ import { BiSolidLock } from "react-icons/bi";
 const Register = () => {
   return (
     <div className="flex flex-auto justify-center items-center h-full w-full bg-[#e4f0f7] min-w-fit min-h-max">
-      <div className="flex flex-col w-1/4 h-4/5 p-4 justify-evenly shrink items-center bg-[#ECEEF0] shadow-[-4px_-4px_19px_11px_rgba(255,255,255,1),14px_19px_36px_8px_rgba(0,0,0,0.6)] rounded-[10%] min-h-[480px] min-w-max">
+      <div className="flex flex-col w-1/4 h-4/5 p-4 justify-evenly shrink items-center bg-[#ECEEF0] shadow-[-4px_-4px_19px_11px_rgba(255,255,255,1),14px_19px_36px_8px_rgba(0,0,0,0.5)] rounded-[45px] min-h-[480px] min-w-max">
         <div className="rounded-full w-24 h-24 p-3 flex shrink bg-[#ECEEF0] shadow-[-6px_-3px_17px_0px_rgba(255,255,255,1),7px_6px_13px_0px_rgba(0,0,0,0.31)]">
           <img src="/icons/user.png" alt="logo" />
         </div>
         <div className="flex flex-col w-full items-center mt-4">
           <div className="flex flex-row items-center bg-[#ECEEF0] w-4/5 h-[45px] px-6 shadow-[-4px_-4px_12px_0px_rgba(255,255,255,1)_inset,4px_2px_12px_0px_rgba(0,0,0,0.25)_inset] rounded-3xl hover:scale-105  hover:border-sky-600  duration-500 ">
-            <FaUserTie color="black" size={20} />
+            <span>
+              <FaUserTie color="grey" size={20} />
+            </span>
             <input
               type="username"
               placeholder="username"
-              className="outline-none bg-inherit flex-1 mx-3"
+              className="outline-none bg-inherit mx-3"
             />
           </div>
           <div className="px-10 hidden">
@@ -23,11 +25,13 @@ const Register = () => {
             </p>
           </div>
           <div className="flex flex-row items-center bg-[#ECEEF0] w-4/5 h-[45px] px-6 shadow-[-4px_-4px_12px_0px_rgba(255,255,255,1)_inset,4px_2px_12px_0px_rgba(0,0,0,0.25)_inset] rounded-3xl hover:scale-105  hover:border-sky-600  duration-500 mt-4">
-            <FaUserTie color="black" size={20} />
+            <span>
+              <FaUserTie color="grey" size={20} />
+            </span>
             <input
               type="email"
               placeholder="Email"
-              className="outline-none bg-inherit flex-1 mx-3"
+              className="outline-none bg-inherit mx-3"
             />
           </div>
           <div className="px-10 hidden">
@@ -36,19 +40,23 @@ const Register = () => {
             </p>
           </div>
           <div className="flex flex-row items-center bg-[#ECEEF0] w-4/5 h-[45px] px-6 hover:scale-105 duration-500 shadow-[-4px_-4px_12px_0px_rgba(255,255,255,1)_inset,4px_2px_12px_0px_rgba(0,0,0,0.25)_inset] rounded-3xl mt-4">
-            <BiSolidLock color="black" size={20} />
+            <span>
+              <BiSolidLock color="grey" size={20} />
+            </span>
             <input
               type="password"
               placeholder="password"
-              className="outline-none bg-inherit flex-1 mx-3"
+              className="outline-none bg-inherit mx-3"
             />
           </div>
           <div className="flex flex-row items-center bg-[#ECEEF0] w-4/5 h-[45px] px-6 hover:scale-105 duration-500 shadow-[-4px_-4px_12px_0px_rgba(255,255,255,1)_inset,4px_2px_12px_0px_rgba(0,0,0,0.25)_inset] rounded-3xl mt-4">
-            <BiSolidLock color="black" size={20} />
+            <span>
+              <BiSolidLock color="grey" size={20} />
+            </span>
             <input
               type="password"
               placeholder="confirm password"
-              className="outline-none bg-inherit flex-1 mx-3"
+              className="outline-none bg-inherit mx-3"
             />
           </div>
           <div className="px-10 hidden">

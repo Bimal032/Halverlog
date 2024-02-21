@@ -7,13 +7,15 @@ import { FaFacebookF } from "react-icons/fa";
 const LoginPage = () => {
   return (
     <div className="flex flex-auto justify-center items-center h-full w-full bg-[#e4f0f7]">
-      <div className="flex flex-col w-1/4 h-3/4 p-4 shrink justify-around items-center bg-[#ECEEF0] shadow-[-4px_-4px_19px_11px_rgba(255,255,255,1),14px_19px_36px_8px_rgba(0,0,0,0.6)] rounded-[10%] min-w-max min-h-[480px]">
+      <div className="flex flex-col w-1/4 h-3/4 p-4 shrink justify-around items-center bg-[#ECEEF0] shadow-[-4px_-4px_19px_11px_rgba(255,255,255,1),14px_19px_36px_8px_rgba(0,0,0,0.5)] rounded-[45px] min-w-max min-h-[480px]">
         <div className="rounded-full w-28 h-28 p-3 flex shrink bg-[#ECEEF0] shadow-[-6px_-3px_17px_0px_rgba(255,255,255,1),7px_6px_13px_0px_rgba(0,0,0,0.31)]">
           <img src="/icons/user.png" alt="logo" />
         </div>
         <div className="flex flex-col w-full items-center mt-6">
           <div className="flex flex-row items-center bg-[#ECEEF0] w-4/5 h-[45px] px-6 shadow-[-4px_-4px_12px_0px_rgba(255,255,255,1)_inset,4px_2px_12px_0px_rgba(0,0,0,0.25)_inset] rounded-3xl hover:scale-105  hover:border-sky-600  duration-500 ">
-            <FaUserTie color="black" size={20} />
+            <span>
+              <FaUserTie color="grey" size={20} />
+            </span>
             <input
               type="username"
               placeholder="username"
@@ -26,7 +28,9 @@ const LoginPage = () => {
             </p>
           </div>
           <div className="flex flex-row items-center bg-[#ECEEF0] w-4/5 h-[45px] px-6 hover:scale-105 duration-500 shadow-[-4px_-4px_12px_0px_rgba(255,255,255,1)_inset,4px_2px_12px_0px_rgba(0,0,0,0.25)_inset] rounded-3xl mt-4">
-            <BiSolidLock color="black" size={20} />
+            <span>
+              <BiSolidLock color="grey" size={20} />
+            </span>
             <input
               type="password"
               placeholder="password"
@@ -53,17 +57,17 @@ const LoginPage = () => {
           <div className="flex w-4/5 place-content-around mt-5">
             <div className="flex justify-center items-center bg-[#ECEEF0] hover:scale-110 duration-500 w-10 h-10 shadow-[-4px_-3px_4px_0px_rgba(255,255,255,1),3px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-lg">
               <a href="">
-                <FaFacebookF size={20} />
+                <FaFacebookF color="grey" size={20} />
               </a>
             </div>
             <div className="flex justify-center items-center bg-[#ECEEF0] hover:scale-110 duration-500 w-10 h-10 shadow-[-4px_-3px_4px_0px_rgba(255,255,255,1),3px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-lg">
               <a href="">
-                <FaGoogle size={20} />
+                <FaGoogle color="grey" size={20} />
               </a>
             </div>
             <div className="flex justify-center items-center bg-[#ECEEF0] hover:scale-110 duration-500 w-10 h-10 shadow-[-4px_-3px_4px_0px_rgba(255,255,255,1),3px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-lg">
               <a href="">
-                <FaTwitter size={20} />
+                <FaTwitter color="grey" size={20} />
               </a>
             </div>
           </div>
