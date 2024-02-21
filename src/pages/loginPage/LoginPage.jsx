@@ -42,7 +42,7 @@ const LoginPage = () => {
               The password you have entered is incorrect
             </p>
           </div>
-          <span className="text-xs text-gray-500 font-semibold mt-5">
+          <span className="text-xm text-gray-500 font-semibold mt-5">
             <a href="">forgotten password ?</a>
           </span>
           <button className="w-4/5 h-[45px] bg-[#4482BF] rounded-3xl text-white font-semibold mt-4 hover:scale-105 duration-500 shadow-[-5px_-4px_16px_0px_rgba(255,255,255,1),4px_5px_13px_0px_rgba(0,0,0,0.63)]">

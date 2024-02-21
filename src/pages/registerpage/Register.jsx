@@ -30,7 +30,7 @@ const Register = () => {
             </span>
             <input
               type="email"
-              placeholder="Email"
+              placeholder="confirm username"
               className="outline-none bg-inherit mx-3"
             />
           </div>
