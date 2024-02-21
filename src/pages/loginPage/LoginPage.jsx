@@ -45,27 +45,27 @@ const LoginPage = () => {
             Login
           </button>
           <span className="text-xs text-gray-500 font-semibold mt-3">
-            <a href="" className="text-sky-600 mr-1">
-              Register{" "}
+            <a href="/register" className="text-sky-600 mr-1">
+              Register
             </a>
             Or login with
           </span>
-        </div>
-        <div className="flex w-4/5 place-content-around">
-          <div className="flex justify-center items-center bg-[#ECEEF0] hover:scale-110 duration-500 w-10 h-10 shadow-[-4px_-3px_4px_0px_rgba(255,255,255,1),3px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-lg">
-            <a href="">
-              <FaFacebookF size={20} />
-            </a>
-          </div>
-          <div className="flex justify-center items-center bg-[#ECEEF0] hover:scale-110 duration-500 w-10 h-10 shadow-[-4px_-3px_4px_0px_rgba(255,255,255,1),3px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-lg">
-            <a href="">
-              <FaGoogle size={20} />
-            </a>
-          </div>
-          <div className="flex justify-center items-center bg-[#ECEEF0] hover:scale-110 duration-500 w-10 h-10 shadow-[-4px_-3px_4px_0px_rgba(255,255,255,1),3px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-lg">
-            <a href="">
-              <FaTwitter size={20} />
-            </a>
+          <div className="flex w-4/5 place-content-around mt-5">
+            <div className="flex justify-center items-center bg-[#ECEEF0] hover:scale-110 duration-500 w-10 h-10 shadow-[-4px_-3px_4px_0px_rgba(255,255,255,1),3px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-lg">
+              <a href="">
+                <FaFacebookF size={20} />
+              </a>
+            </div>
+            <div className="flex justify-center items-center bg-[#ECEEF0] hover:scale-110 duration-500 w-10 h-10 shadow-[-4px_-3px_4px_0px_rgba(255,255,255,1),3px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-lg">
+              <a href="">
+                <FaGoogle size={20} />
+              </a>
+            </div>
+            <div className="flex justify-center items-center bg-[#ECEEF0] hover:scale-110 duration-500 w-10 h-10 shadow-[-4px_-3px_4px_0px_rgba(255,255,255,1),3px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-lg">
+              <a href="">
+                <FaTwitter size={20} />
+              </a>
+            </div>
           </div>
         </div>
       </div>

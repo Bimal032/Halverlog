@@ -61,7 +61,7 @@ const Register = () => {
           </button>
           <span className="text-xs text-gray-500 font-semibold mt-3">
             Already have an account ?
-            <a href="" className="text-sky-600 ml-1">
+            <a href="/login" className="text-sky-600 ml-1">
               Login
             </a>
           </span>
