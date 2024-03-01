@@ -1,6 +1,6 @@
 import Home from "./pages/home/Home";
 import LoginPage from "./pages/loginPage/LoginPage";
-import Register from "./pages/registerpage/Register";
+import Register from "./pages/registerPage/Register";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
 import Navbar from "./components/navbar/Navbar";
