@@ -2,14 +2,9 @@ import Home from "./pages/home/Home";
 import LoginPage from "./pages/loginPage/LoginPage";
 import Register from "./pages/registerPage/Register";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-
-import Navbar from "./components/navbar/Navbar";
-import Leftbar from "./components/leftbar/Leftbar";
-import Rightbar from "./components/rightbar/Rightbar";
 import Profile from "./pages/profile/Profile";
 import ProfilePage from "./components/ProfilePage/ProfilePage";
-
-
+import "./index.css";
 
 // const Layout = () => {
 //   return (
@@ -27,43 +22,40 @@ import ProfilePage from "./components/ProfilePage/ProfilePage";
 //   );
 // };
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Layout />,
-//     children: [
-//       {
-//         path: "/",
-//         element: <Home />,
-//       },
-//       {
-//         path: "/profile/:id",
-//         element: <Profile />,
-//       },
-//     ],
-//   },
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/profile/:id",
+    element: <Profile />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
 
-//   {
-//     path: "/login",
-//     element: <LoginPage />,
-//   },
-
-//   {
-//     path: "/register",
-//     element: <Register />,
-//   },
-//   {
-//     path: "/home",
-//     element: <Home />,
-//   },
-// ]);
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/home",
+    element: <Home />,
+  },
+  {
+    path: "/profile",
+    element: <ProfilePage />,
+  },
+]);
 
 function App() {
   return (
     <>
-      {/* <RouterProvider router={router} /> */}
+      <RouterProvider router={router} />
       {/* <Register/> */}
-      <ProfilePage/>
+      {/* <ProfilePage /> */}
     </>
   );
 }
