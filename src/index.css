@@ -22,3 +22,12 @@
     @apply hover:fill-blue-500  hover:text-blue-500;
   }
 }
+
+@media (max-width: 620px) {
+  .remove {
+    display: none;
+  }
+  .add {
+    width: 100%;
+  }
+}

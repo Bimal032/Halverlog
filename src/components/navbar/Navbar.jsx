@@ -4,9 +4,20 @@ import { MdHome } from "react-icons/md";
 import { BsChatDotsFill } from "react-icons/bs";
 import { TbLogout } from "react-icons/tb";
 import { FaBell, FaUsers, FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import authService from "../../appwrite/auth";
+import { useDispatch } from "react-redux";
+import { logout } from "../../store/authSlice";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleOnClick = () => {
+    authService.logout().then(() => {
+      dispatch(logout());
+      navigate("/login");
+    });
+  };
   return (
     <nav className="flex fixed top-0 h-[5rem] rounded-b-lg bg-[rgba(231,231,231,1)] w-full justify-around py-5 items-center shadow-[0px_6px_16px_0px_rgba(0,0,0,0.25)] z-10">
       <div className="mr-2 min-w-fit">
@@ -43,12 +54,15 @@ const Navbar = () => {
         </Link>
         <p className="text-xs ml-1 font-semibold active">User Name</p>
       </div>
-      <div className="flex items-center gap-2 min-w-max">
-        <Link to="/login" className="navbtn">
+      <button
+        onClick={handleOnClick}
+        className="flex items-center gap-2 min-w-max"
+      >
+        <span className="navbtn">
           <TbLogout size={20} className="active" />
-        </Link>
+        </span>
         <p className="text-xs ml-1 font-semibold active">Logout</p>
-      </div>
+      </button>
     </nav>
   );
 };

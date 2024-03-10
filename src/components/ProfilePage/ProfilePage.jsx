@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Style from "./ProfilePage.module.css";
 import { FaRegHeart, FaRegCommentDots } from "react-icons/fa";
 import { FaFaceLaugh } from "react-icons/fa6";
@@ -8,8 +8,18 @@ import Rightbar from "../rightbar/Rightbar";
 import Bottombar from "../bottombar/Bottombar";
 import Leftbar from "../leftbar/Leftbar";
 import Navbar from "../navbar/Navbar";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
+  const authStatus = useSelector((state) => state.auth.status);
+  useEffect(() => {
+    if (!authStatus) {
+      navigate("/login");
+    }
+  }, [authStatus, navigate]);
+
   return (
     <div className="w-full bg-[rgba(236,238,240,1)] min-w-[470px]">
       {/* navbar starts*/}
