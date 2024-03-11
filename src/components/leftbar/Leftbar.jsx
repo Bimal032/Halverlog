@@ -1,31 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { MdFeed } from "react-icons/md";
 import { FaBookmark } from "react-icons/fa6";
 import { FaUsers } from "react-icons/fa";
 import { PiVideoFill } from "react-icons/pi";
 import Style from "./leftbar.module.css";
-import { useLocation } from "react-router-dom";
 
 const Leftbar = ({ userData }) => {
-  const [show, setShow] = useState(false);
-  const location = useLocation();
-  useEffect(() => {
-    if (location.pathname === "/profile/" + userData?.$id) {
-      setShow(true);
-    }
-  }, []);
-
   return (
     <div
       className={`flex flex-col bg-[rgba(236,238,240,1)] left-0 w-[25%] max-[900px]:w-[35%] min-w-72 px-6 py-2 overscroll-contain ${Style.remove}`}
     >
-      <div
-        className={
-          show
-            ? "flex relative flex-col mt-4 bg-[rgba(217,222,226,1)] rounded-3xl p-4 min-h-[27rem] shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)]"
-            : "hidden"
-        }
-      >
+      <div className="flex relative flex-col mt-4 bg-[rgba(217,222,226,1)] rounded-3xl p-4 min-h-[27rem] shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)]">
         <div className="flex p-2 w-full h-32 bg-[rgba(217,217,217,1)] rounded-2xl shadow-[0px_4px_4px_0px_rgba(143,125,125,0.42)_inset,0px_4px_4px_0px_rgba(255,255,255,0.25)]"></div>
         <div className="flex rounded-full absolute top-[23%] left-[35%]">
           <img

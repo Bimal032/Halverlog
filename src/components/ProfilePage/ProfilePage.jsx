@@ -1,17 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Style from "./ProfilePage.module.css";
-import { FaRegHeart, FaRegCommentDots } from "react-icons/fa";
 import { FaFaceLaugh } from "react-icons/fa6";
-import { CiMenuKebab } from "react-icons/ci";
-import { PiShareFat } from "react-icons/pi";
 import Rightbar from "../rightbar/Rightbar";
 import Bottombar from "../bottombar/Bottombar";
 import Leftbar from "../leftbar/Leftbar";
 import Navbar from "../navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import CreatePost from "../createpost/CreatePost";
+import PostForm from "../postform/PostForm";
 
 const ProfilePage = () => {
+  const [showModal, setShowModal] = useState(false);
+  const closeModal = () => {
+    return setShowModal(false);
+  };
   const navigate = useNavigate();
   const authStatus = useSelector((state) => state.auth.status);
   const userData = useSelector((state) => state.auth.userData);
@@ -33,6 +36,29 @@ const ProfilePage = () => {
         <div
           className={`p-2 bg-[rgba(236,238,240,1)] h-full w-[50%] max-[900px]:w-[65%] flex flex-col z-[1] ${Style.add}`}
         >
+          {/* profile image with name starts */}
+          <div className="flex flex-col w-full mt-4 p-4 gap-6 bg-[rgba(236,238,240,1)] rounded-3xl shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)]">
+            <div className="flex relative p-1 w-full h-72 bg-[rgba(217,217,217,1)] rounded-2xl shadow-[0px_4px_4px_0px_rgba(143,125,125,0.42)_inset,0px_4px_4px_0px_rgba(255,255,255,0.25)]"></div>
+            <div className="absolute top-[14%] ml-4">
+              <img
+                src={userData?.imageUrl || "/images/avatar.jpeg"}
+                alt="avatar"
+                className="h-40 w-40 rounded-full"
+              />
+            </div>
+            <div className="flex justify-between">
+              <div className="ml-8 text-2xl font-semibold">
+                {userData?.name}
+              </div>
+              <div className="flex flex-1 justify-evenly flex-wrap">
+                <button className="mx-2 active text-md">Timeline</button>
+                <button className="active text-md">About</button>
+                <button className="mx-2 active text-md">Friends</button>
+                <button className="active text-md">Photos</button>
+              </div>
+            </div>
+          </div>
+          {/* profile image with name ends */}
           {/* create post */}
           <div className="flex flex-col w-full mt-4 p-10 gap-6 bg-[rgba(236,238,240,1)] rounded-3xl shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)]">
             <div className="flex mx-2 justify-center gap-4">
@@ -48,18 +74,25 @@ const ProfilePage = () => {
                   type="text"
                   placeholder="share something..."
                   className="w-[85%] outline-none bg-inherit text-black active"
+                  onClick={() => setShowModal(true)}
                 />
                 <FaFaceLaugh className="active hover:scale-110" />
               </div>
             </div>
             <div className="flex justify-around flex-wrap">
-              <button className="postbutton mt-1">
+              <button
+                className="postbutton mt-1"
+                onClick={() => setShowModal(true)}
+              >
                 <span className="w-10">
                   <img src="/images/img1.png" alt="add-image" />
                 </span>
                 <span className="w-full text-sm active">image</span>
               </button>
-              <button className="postbutton mt-1">
+              <button
+                className="postbutton mt-1"
+                onClick={() => setShowModal(true)}
+              >
                 <span className="w-10">
                   <img src="/images/img2.png" alt="add-video" />
                 </span>
@@ -71,99 +104,17 @@ const ProfilePage = () => {
                 </span>
                 <span className="w-full text-sm active">news</span>
               </button>
-              <button className="postbutton mt-1">
+              <button
+                className="postbutton mt-1"
+                onClick={() => setShowModal(true)}
+              >
                 <span className="w-16 text-sm active">post</span>
               </button>
             </div>
           </div>
+          {showModal && <CreatePost closeModal={closeModal} />}
           {/* post template */}
-          <div className=" flex flex-col rounded-2xl bg-white mt-6 shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)]">
-            <div className="flex w-full p-6">
-              <div className="flex w-full gap-4 px-6">
-                <div className="rounded-full border-black border-[1px] flow-root w-14 h-14 bg-black">
-                  <img
-                    src="/images/avatar.jpeg"
-                    alt="avatar"
-                    className="rounded-full"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-bold text-black text-lg">
-                    Bimal Kishor Mondal
-                  </span>
-                  <span className="text-sm">12 Feb 2024</span>
-                </div>
-              </div>
-              <button className="justify-self-end">
-                <CiMenuKebab size={20} className="active" />
-              </button>
-            </div>
-            <div id="caption" className="text-md px-6">
-              One Piece Proves Luffy's Gear 5 is not Goofy, Its terrifying
-            </div>
-            <div className="w-full px-4 flex justify-center">
-              <img
-                src="/img/background.jpeg"
-                alt="post-img"
-                className="object-cover w-full h-[30rem]"
-              />
-            </div>
-            <div className="flex p-3 w-1/2 justify-around">
-              <button className="profilebutton">
-                <FaRegHeart size={25} className="active" />
-              </button>
-              <button className="profilebutton">
-                <FaRegCommentDots size={25} className="active" />
-              </button>
-              <button className="profilebutton">
-                <PiShareFat size={25} className="active" />
-              </button>
-            </div>
-          </div>
-          {/* post template */}
-          <div className=" flex flex-col rounded-2xl bg-white mt-6 shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)]">
-            <div className="flex w-full p-8">
-              <div className="flex w-full gap-4 px-6">
-                <div className="rounded-full border-black border-[1px] flow-root w-14 h-14 bg-black">
-                  <img
-                    src="/images/avatar.jpeg"
-                    alt="avatar"
-                    className="rounded-full"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-bold text-black text-lg">
-                    Bimal Kishor Mondal
-                  </span>
-                  <span className="text-sm">12 Feb 2024</span>
-                </div>
-              </div>
-              <button className="justify-self-end">
-                <CiMenuKebab size={20} className="active" />
-              </button>
-            </div>
-            <div id="caption" className="text-md px-6">
-              One Piece Proves Luffy's Gear 5 is not Goofy, Its terrifying
-            </div>
-            <div className="flex justify-center w-full px-4">
-              <img
-                src="/img/background.jpeg"
-                alt="post-img"
-                className="object-cover w-full h-[30rem]"
-              />
-            </div>
-            <div className="flex p-3 w-1/2 justify-around">
-              <button className="profilebutton">
-                <FaRegHeart size={25} className="active" />
-              </button>
-              <button className="profilebutton">
-                <FaRegCommentDots size={25} className="active" />
-              </button>
-              <button className="profilebutton">
-                <PiShareFat size={25} className="active" />
-              </button>
-            </div>
-          </div>
+          <PostForm />
         </div>
         {/* Rightbar starts */}
         <Rightbar userData={userData} />

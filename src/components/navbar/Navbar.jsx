@@ -19,7 +19,7 @@ const Navbar = ({ userData }) => {
     });
   };
   return (
-    <nav className="flex fixed top-0 h-[5rem] rounded-b-lg bg-[rgba(231,231,231,1)] w-full justify-around py-5 items-center shadow-[0px_6px_16px_0px_rgba(0,0,0,0.25)] z-10">
+    <nav className="flex fixed top-0 h-[5rem] rounded-b-lg bg-[rgba(231,231,231,1)] w-full justify-around py-5 items-center shadow-[0px_6px_16px_0px_rgba(0,0,0,0.25)] z-[5]">
       <div className="mr-2 min-w-fit">
         <img className="h-full w-20" src="/img/halverlog1.png" alt="" />
       </div>
