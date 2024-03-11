@@ -1,4 +1,6 @@
 import { FaUserTie } from "react-icons/fa6";
+import { MdEmail } from "react-icons/md";
+import { MdDriveFileRenameOutline } from "react-icons/md";
 import { BiSolidLock } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -25,18 +27,15 @@ const Register = () => {
 
   const create = async (data) => {
     setIsLoading(true);
-    if (data.password != data.cnfPassword) {
-      setError("password and confirm password must be same");
-    } else {
-      try {
-        const userAccount = await authService.createAccount(data);
-        if (userAccount) {
-          navigate("/login");
-          setIsLoading(false);
-        }
-      } catch (error) {
-        setError(error.message);
+    try {
+      const userAccount = await authService.createAccount(data);
+      if (userAccount) {
+        navigate("/login");
+        setIsLoading(false);
       }
+    } catch (error) {
+      setError(error.message);
+      setIsLoading(false);
     }
   };
   return (
@@ -73,7 +72,7 @@ const Register = () => {
           )}
           <div className="flex flex-row items-center text-sm bg-[#ECEEF0] w-4/5 h-[45px] px-6 shadow-[-4px_-4px_12px_0px_rgba(255,255,255,1)_inset,4px_2px_12px_0px_rgba(0,0,0,0.25)_inset] rounded-3xl hover:scale-105  duration-500 mt-4">
             <span>
-              <FaUserTie color="grey" size={20} />
+              <MdEmail color="grey" size={20} />
             </span>
             <input
               type="email"
@@ -87,6 +86,22 @@ const Register = () => {
           </div>
           {errors.email && (
             <p className="text-red-400 px-10 text-xs">enter a valid email</p>
+          )}
+          <div className="flex flex-row items-center text-sm bg-[#ECEEF0] w-4/5 h-[45px] px-6 hover:scale-105 duration-500 shadow-[-4px_-4px_12px_0px_rgba(255,255,255,1)_inset,4px_2px_12px_0px_rgba(0,0,0,0.25)_inset] rounded-3xl mt-4">
+            <span>
+              <MdDriveFileRenameOutline color="grey" size={20} />
+            </span>
+            <input
+              type="text"
+              placeholder="Full Name"
+              className="outline-none bg-inherit mx-3 w-[85%]"
+              {...register("name", {
+                required: true,
+              })}
+            />
+          </div>
+          {errors.FullName && (
+            <p className="text-red-400 text-xs px-10">must enter the field</p>
           )}
           <div className="flex flex-row items-center text-sm bg-[#ECEEF0] w-4/5 h-[45px] px-6 hover:scale-105 duration-500 shadow-[-4px_-4px_12px_0px_rgba(255,255,255,1)_inset,4px_2px_12px_0px_rgba(0,0,0,0.25)_inset] rounded-3xl mt-4">
             <span>
@@ -105,27 +120,6 @@ const Register = () => {
             />
           </div>
           {errors.password && (
-            <p className="text-red-400 text-xs px-10">
-              Password must be 8 digit and contains capital,small,number,symbol
-            </p>
-          )}
-          <div className="flex flex-row items-center text-sm bg-[#ECEEF0] w-4/5 h-[45px] px-6 hover:scale-105 duration-500 shadow-[-4px_-4px_12px_0px_rgba(255,255,255,1)_inset,4px_2px_12px_0px_rgba(0,0,0,0.25)_inset] rounded-3xl mt-4">
-            <span>
-              <BiSolidLock color="grey" size={20} />
-            </span>
-            <input
-              type="password"
-              placeholder="confirm password"
-              className="outline-none bg-inherit mx-3 w-[85%]"
-              {...register("cnfPassword", {
-                required: true,
-                minLength: 8,
-                pattern:
-                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]/,
-              })}
-            />
-          </div>
-          {errors.cnfPassword && (
             <p className="text-red-400 text-xs px-10">
               Password must be 8 digit and contains capital,small,number,symbol
             </p>

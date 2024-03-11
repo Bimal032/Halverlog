@@ -6,11 +6,11 @@ import { PiVideoFill } from "react-icons/pi";
 import Style from "./leftbar.module.css";
 import { useLocation } from "react-router-dom";
 
-const Leftbar = () => {
+const Leftbar = ({ userData }) => {
   const [show, setShow] = useState(false);
   const location = useLocation();
   useEffect(() => {
-    if (location.pathname === "/profile") {
+    if (location.pathname === "/profile/" + userData?.$id) {
       setShow(true);
     }
   }, []);
@@ -29,15 +29,17 @@ const Leftbar = () => {
         <div className="flex p-2 w-full h-32 bg-[rgba(217,217,217,1)] rounded-2xl shadow-[0px_4px_4px_0px_rgba(143,125,125,0.42)_inset,0px_4px_4px_0px_rgba(255,255,255,0.25)]"></div>
         <div className="flex rounded-full absolute top-[23%] left-[35%]">
           <img
-            src="/images/avatar.jpeg"
+            src={userData.imageUrl || "/images/avatar.jpeg"}
             alt="avatar"
             className="h-20 w-20 rounded-full"
           />
         </div>
         <div className="flex flex-col justify-evenly gap-6 mt-16">
           <div className="flex flex-col justify-center items-center">
-            <span className="text-sm font-semibold">Bimal Kishor Mondal</span>
-            <span className="text-xs">@bimal12</span>
+            <span className="text-sm font-semibold">
+              {userData.name || "name"}
+            </span>
+            <span className="text-xs">@{userData.username || "username"}</span>
           </div>
           <div className="flex justify-around">
             <div className="flex flex-col items-center">

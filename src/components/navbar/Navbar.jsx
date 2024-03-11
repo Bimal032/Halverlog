@@ -9,7 +9,7 @@ import authService from "../../appwrite/auth";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/authSlice";
 
-const Navbar = () => {
+const Navbar = ({ userData }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleOnClick = () => {
@@ -49,10 +49,12 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="flex items-center gap-2 ml-2 min-w-max">
-        <Link to="/profile" className="navbtn">
+        <Link to={`/profile/${userData?.$id}`} className="navbtn">
           <FaUser size={20} className="active" />
         </Link>
-        <p className="text-xs ml-1 font-semibold active">User Name</p>
+        <p className="text-xs ml-1 font-semibold active">
+          {userData ? userData.name : "User Name"}
+        </p>
       </div>
       <button
         onClick={handleOnClick}

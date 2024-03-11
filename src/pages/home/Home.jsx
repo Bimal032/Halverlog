@@ -9,6 +9,7 @@ import Style from "../../components/ProfilePage/ProfilePage.module.css";
 function Home() {
   const navigate = useNavigate();
   const authStatus = useSelector((state) => state.auth.status);
+  const userData = useSelector((state) => state.auth.userData);
   useEffect(() => {
     if (!authStatus) {
       navigate("/login");
@@ -16,9 +17,9 @@ function Home() {
   }, [authStatus, navigate]);
   return (
     <div className="w-full bg-[rgba(236,238,240,1)] min-w-[470px] min-h-[100lvh]">
-      <Navbar />
+      <Navbar userData={userData} />
       <div className="flex w-full relative h-full mt-[5rem]">
-        <Leftbar />
+        <Leftbar userData={userData} />
         <div
           className={`p-2 bg-[rgba(236,238,240,1)] h-full w-[50%] max-[900px]:w-[65%] border-black border-2 flex flex-col z-[1] ${Style.add}`}
         >
@@ -26,9 +27,9 @@ function Home() {
             ? "Home User is logged in"
             : "Welcome to Halverlog Login to see posts"}
         </div>
-        <Rightbar />
+        <Rightbar userData={userData} />
       </div>
-      <Bottombar />
+      <Bottombar userData={userData} />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { login, logout } from "./store/authSlice";
 import authService from "./appwrite/auth";
+import Loader from "./components/Loader/Loader";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -17,11 +18,7 @@ function App() {
       })
       .finally(() => setLoading(false));
   }, [dispatch]);
-  return (
-    <>
-      <Outlet />
-    </>
-  );
+  return <>{loading ? <Loader /> : <Outlet />}</>;
 }
 
 export default App;

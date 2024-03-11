@@ -4,7 +4,7 @@ import { FaBell, FaUsers } from "react-icons/fa";
 import { MdHome } from "react-icons/md";
 import { BsChatDotsFill } from "react-icons/bs";
 
-const Bottombar = () => {
+const Bottombar = ({ userData }) => {
   return (
     <div className="fixed bottom-0 h-14 bg-[rgba(231,231,231,1)] w-full lg:hidden z-10">
       <div className="flex gap-2 items-center justify-around h-full">

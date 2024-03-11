@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 const ProfilePage = () => {
   const navigate = useNavigate();
   const authStatus = useSelector((state) => state.auth.status);
+  const userData = useSelector((state) => state.auth.userData);
   useEffect(() => {
     if (!authStatus) {
       navigate("/login");
@@ -23,11 +24,11 @@ const ProfilePage = () => {
   return (
     <div className="w-full bg-[rgba(236,238,240,1)] min-w-[470px]">
       {/* navbar starts*/}
-      <Navbar />
+      <Navbar userData={userData} />
       {/* navbar ends */}
       <div className="flex w-full relative h-full mt-[5rem]">
         {/* Leftbar start */}
-        <Leftbar />
+        <Leftbar userData={userData} />
         {/* middle content start*/}
         <div
           className={`p-2 bg-[rgba(236,238,240,1)] h-full w-[50%] max-[900px]:w-[65%] flex flex-col z-[1] ${Style.add}`}
@@ -35,9 +36,9 @@ const ProfilePage = () => {
           {/* create post */}
           <div className="flex flex-col w-full mt-4 p-10 gap-6 bg-[rgba(236,238,240,1)] rounded-3xl shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)]">
             <div className="flex mx-2 justify-center gap-4">
-              <div className="rounded-full border-black border-[1px] flow-root w-12 h-12 bg-black">
+              <div className="rounded-full flow-root w-12 h-12 bg-black">
                 <img
-                  src="/images/avatar.jpeg"
+                  src={userData.imageUrl || "/images/avatar.jpeg"}
                   alt="avatar"
                   className="rounded-full"
                 />
@@ -165,10 +166,10 @@ const ProfilePage = () => {
           </div>
         </div>
         {/* Rightbar starts */}
-        <Rightbar />
+        <Rightbar userData={userData} />
       </div>
       {/* bottom bar */}
-      <Bottombar />
+      <Bottombar userData={userData} />
     </div>
   );
 };

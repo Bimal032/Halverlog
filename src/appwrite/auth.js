@@ -1,4 +1,5 @@
 import { Client, Account,ID } from "appwrite";
+import service from './config.js';
 import conf from '../conf/conf.js'
 
 export class AuthService{
@@ -10,11 +11,17 @@ export class AuthService{
         this.account=new Account(this.client)
     }
 
-    async createAccount({email,password,username}){
+    async createAccount({email,password,username,name}){
         try{
             const userAccount=await this.account.create(ID.unique(),email,password,username);
             if(userAccount){
-                return userAccount;
+                const newUser=await service.saveUserToDB({
+                    accountId: userAccount.$id,
+                    name: name,
+                    email: userAccount.email,
+                    username:userAccount.name,
+                  }); 
+                return newUser;
             }
         }catch(error){
             console.log("Appwrite service :: createAccount() ::",error)
@@ -34,7 +41,11 @@ export class AuthService{
 
     async getCurrentUser(){
         try{
-            return this.account.get();
+            const currentAccount= await this.account.get();
+            if(currentAccount){
+                const currentUser=await service.getUserData({accountId:currentAccount.$id});
+                return currentUser;
+            }
         }catch(error){
             console.log("Appwrite service :: getCurrentUser() ::",error);
             return null;

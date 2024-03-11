@@ -1,6 +1,6 @@
 import React from "react";
 
-const Rightbar = () => {
+const Rightbar = ({ userData }) => {
   return (
     <div className="w-[25%] bg-[rgba(236,238,240,1)] max-[900px]:hidden py-2 px-6">
       <div className="flex flex-col mt-4 bg-white rounded-3xl p-4 shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)]">
