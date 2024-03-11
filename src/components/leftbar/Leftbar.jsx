@@ -29,7 +29,7 @@ const Leftbar = ({ userData }) => {
         <div className="flex p-2 w-full h-32 bg-[rgba(217,217,217,1)] rounded-2xl shadow-[0px_4px_4px_0px_rgba(143,125,125,0.42)_inset,0px_4px_4px_0px_rgba(255,255,255,0.25)]"></div>
         <div className="flex rounded-full absolute top-[23%] left-[35%]">
           <img
-            src={userData.imageUrl || "/images/avatar.jpeg"}
+            src={userData?.imageUrl || "/images/avatar.jpeg"}
             alt="avatar"
             className="h-20 w-20 rounded-full"
           />
@@ -37,9 +37,9 @@ const Leftbar = ({ userData }) => {
         <div className="flex flex-col justify-evenly gap-6 mt-16">
           <div className="flex flex-col justify-center items-center">
             <span className="text-sm font-semibold">
-              {userData.name || "name"}
+              {userData?.name || "name"}
             </span>
-            <span className="text-xs">@{userData.username || "username"}</span>
+            <span className="text-xs">@{userData?.username || "username"}</span>
           </div>
           <div className="flex justify-around">
             <div className="flex flex-col items-center">
