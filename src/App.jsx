@@ -8,7 +8,7 @@ import Loader from "./components/Loader/Loader";
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
- //abcd
+
   useEffect(() => {
     authService
       .getCurrentUser()
