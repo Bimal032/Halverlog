@@ -39,7 +39,7 @@ const ProfilePage = () => {
           {/* profile image with name starts */}
           <div className="flex flex-col w-full mt-4 p-4 gap-6 bg-[rgba(236,238,240,1)] rounded-3xl shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)]">
             <div className="flex relative p-1 w-full h-72 bg-[rgba(217,217,217,1)] rounded-2xl shadow-[0px_4px_4px_0px_rgba(143,125,125,0.42)_inset,0px_4px_4px_0px_rgba(255,255,255,0.25)]"></div>
-            <div className="absolute top-[14%] ml-4">
+            <div className="absolute top-[14%] ml-4 bg-black rounded-full">
               <img
                 src={userData?.imageUrl || "/images/avatar.jpeg"}
                 alt="avatar"
