@@ -35,10 +35,10 @@ const ProfilePage = () => {
         <Leftbar userData={userData} />
         {/* middle content start*/}
         <div
-          className={`p-2 bg-[rgba(236,238,240,1)] h-full w-[50%] max-[1000px]:w-[65%] flex flex-col z-[1] ${Style.add}`}
+          className={`hide-scroll p-2 mt-4 bg-[rgba(236,238,240,1)] h-full w-[50%] max-[1000px]:w-[65%] flex flex-col z-[1] ${Style.add} h-[53rem] overflow-y-auto`}
         >
           {/* profile image with name starts */}
-          <div className="flex flex-col w-full mt-4 p-4 gap-6 bg-[rgba(236,238,240,1)] rounded-3xl shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)]">
+          <div className="flex flex-col w-full mt-4 p-4 gap-6 bg-[rgba(236,238,240,1)] rounded-3xl shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)] h-[40rem]">
             <div className="flex relative p-1 w-full h-72 bg-[rgba(217,217,217,1)] rounded-2xl shadow-[0px_4px_4px_0px_rgba(143,125,125,0.42)_inset,0px_4px_4px_0px_rgba(255,255,255,0.25)]">
               <img
                 src="/img/nature.jpg"
@@ -49,16 +49,16 @@ const ProfilePage = () => {
                 <FaCamera className="mr-1" />
                 Edit cover image
               </button>
-            </div>
-            <div className="absolute top-[16%] ml-4 bg-black rounded-full">
-              <img
-                src={userData?.imageUrl || "/images/avatar.jpeg"}
-                alt="avatar"
-                className="h-40 w-40 rounded-full"
-              />
-              <button className="absolute right-2 bottom-2 bg-gray-500 rounded-full p-2 text-white hover:bg-blue-700">
-                <FaCamera size={20} />
-              </button>
+              <div className="absolute top-[50%] left-4 bg-black rounded-full">
+                <img
+                  src={userData?.imageUrl || "/images/avatar.jpeg"}
+                  alt="avatar"
+                  className="h-40 w-40 rounded-full"
+                />
+                <button className="absolute right-2 bottom-2 bg-gray-500 rounded-full p-2 text-white hover:bg-blue-700">
+                  <FaCamera size={20} />
+                </button>
+              </div>
             </div>
             <div className="flex justify-between">
               <div className="ml-8 text-2xl font-semibold">
@@ -128,6 +128,8 @@ const ProfilePage = () => {
           </div>
           {showModal && <CreatePost closeModal={closeModal} />}
           {/* post template */}
+          <PostForm />
+          <PostForm />
           <PostForm />
         </div>
         {/* Rightbar starts */}

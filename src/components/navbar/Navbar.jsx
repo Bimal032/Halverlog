@@ -1,5 +1,6 @@
 import React from "react";
 import { IoMdSearch } from "react-icons/io";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { MdHome } from "react-icons/md";
 import { BsChatDotsFill } from "react-icons/bs";
 import { TbLogout } from "react-icons/tb";
@@ -12,7 +13,7 @@ import { logout } from "../../store/authSlice";
 const Navbar = ({ userData }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const handleOnClick = () => {
+  const handleLogout = () => {
     authService.logout().then(() => {
       dispatch(logout());
       navigate("/login");
@@ -20,6 +21,9 @@ const Navbar = ({ userData }) => {
   };
   return (
     <nav className="flex fixed top-0 h-[5rem] rounded-b-lg bg-[rgba(231,231,231,1)] w-full justify-around py-5 items-center shadow-[0px_6px_16px_0px_rgba(0,0,0,0.25)] z-[5]">
+      <button className="lg:hidden md:hidden pl-2">
+        <GiHamburgerMenu size={30} />
+      </button>
       <div className="mr-2 min-w-fit">
         <img className="h-full w-20" src="/img/halverlog1.png" alt="" />
       </div>
@@ -57,7 +61,7 @@ const Navbar = ({ userData }) => {
         </p>
       </div>
       <button
-        onClick={handleOnClick}
+        onClick={handleLogout}
         className="flex items-center gap-2 min-w-max"
       >
         <span className="navbtn">

@@ -8,7 +8,6 @@ import LoginPage from "./pages/loginPage/LoginPage.jsx";
 import Register from "./pages/registerPage/Register.jsx";
 import ProfilePage from "./components/ProfilePage/ProfilePage.jsx";
 import Home from "./pages/home/Home.jsx";
-import Profile from "./pages/profile/Profile.jsx";
 // import AuthLayout from "./AuthLayout.jsx";
 import store from "./store/store.js";
 const router = createBrowserRouter([
@@ -30,7 +29,7 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       // {
-      //   path: "/profile/:id",
+      //   path: "/profile",
       //   element: <Profile />,
       // },
       {
