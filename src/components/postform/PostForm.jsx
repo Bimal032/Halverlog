@@ -33,7 +33,7 @@ function PostForm() {
         <img
           src="/img/background.jpeg"
           alt="post-img"
-          className="object-cover w-full h-[30rem]"
+          className="object-cover w-full"
         />
       </div>
       <div className="flex p-3 w-1/2 justify-around">

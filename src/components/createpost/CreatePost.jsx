@@ -3,21 +3,21 @@ import { CiCircleRemove } from "react-icons/ci";
 import { FaGlobeAmericas } from "react-icons/fa";
 
 function CreatePost({ closeModal }) {
-  useEffect(() => {
-    document.body.style.overflowY = "hidden";
-    return () => {
-      document.body.style.overflowY = "scroll";
-    };
-  }, []);
+  // useEffect(() => {
+  //   document.body.style.overflowY = "hidden";
+  //   return () => {
+  //     document.body.style.overflowY = "scroll";
+  //   };
+  // }, []);
   return (
     <div className="fixed left-0 right-0 bottom-0 top-0 bg-[rgba(189,189,189,0.9)] min-w-max overflow-y-auto">
-      <div className="fixed min-w-[500px] max-w-lg min-h-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl p-4 shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)]">
+      <div className="fixed min-w-[500px] max-w-lg min-h-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl p-4 shadow-[5px_5px_27px_0px_rgba(0,0,0,0.31)] mt-8">
         <div className="flex justify-center my-1">
           <h2 className="text-black flex-1 text-center text-lg font-semibold">
             CreatePost
           </h2>
           <button className="" onClick={closeModal}>
-            <CiCircleRemove size={25} className="active" />
+            <CiCircleRemove size={25} className="active " />
           </button>
         </div>
         <hr className="w-full bg-gray-200 mb-3" />

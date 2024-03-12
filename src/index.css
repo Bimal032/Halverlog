@@ -13,7 +13,7 @@
     @apply flex h-10 px-2 rounded-2xl items-center justify-center bg-[rgba(229,232,234,1)] shadow-[-2px_-1px_4px_0px_rgba(255,255,255,1),0px_4px_4px_0px_rgba(0,0,0,0.25)] hover:scale-105;
   }
   .profilebutton {
-    @apply flex h-8 px-2 text-sm rounded-xl items-center justify-center bg-[rgba(229,232,234,1)] shadow-[-3px_-2px_4px_0px_rgba(255,255,255,1),2px_2px_4px_0px_rgba(0,0,0,0.25)] hover:scale-105;
+    @apply flex h-8 px-2 text-sm rounded-md items-center justify-center bg-[rgba(229,232,234,1)] shadow-[-3px_-2px_4px_0px_rgba(255,255,255,1),2px_2px_4px_0px_rgba(0,0,0,0.25)] hover:scale-105;
   }
   .sbutton {
     @apply flex items-center justify-evenly h-12 mt-4 p-2 px-8 bg-[rgba(217,217,217,1)] rounded-lg shadow-[-5px_-3px_7px_0px_rgba(255,255,255,1),0px_4px_4px_0px_rgba(0,0,0,0.25)] hover:scale-110;
