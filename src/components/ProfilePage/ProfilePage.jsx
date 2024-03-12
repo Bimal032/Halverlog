@@ -35,7 +35,7 @@ const ProfilePage = () => {
         <Leftbar userData={userData} />
         {/* middle content start*/}
         <div
-          className={`hide-scroll p-2 mt-4 bg-[rgba(236,238,240,1)] h-full w-[50%] max-[1000px]:w-[65%] flex flex-col z-[1] ${Style.add} h-[53rem] overflow-y-auto`}
+          className={`hide-scroll p-2 bg-[rgba(236,238,240,1)] w-[50%] max-[1000px]:w-[65%] flex flex-col z-[1] ${Style.add} h-[53rem] overflow-y-auto`}
         >
           {/* profile image with name starts */}
           <div className="flex flex-col w-full mt-4 p-4 gap-6 bg-[rgba(236,238,240,1)] rounded-3xl shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)] h-[40rem]">
