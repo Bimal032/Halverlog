@@ -34,7 +34,10 @@ function CreatePost({ closeModal }) {
               <span className="font-semibold text-black text-md ml-2">
                 Bimal Kishor Mondal
               </span>
-              <select className="text-sm w-20 bg-gray-300 mx-2">
+              <select
+                id="post-status"
+                className="text-sm w-20 bg-gray-300 mx-2"
+              >
                 <option value="public">
                   <FaGlobeAmericas size={20} className="mx-2" />
                   Public

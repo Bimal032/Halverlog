@@ -4,6 +4,7 @@ import { FaBookmark } from "react-icons/fa6";
 import { FaUsers } from "react-icons/fa";
 import { PiVideoFill } from "react-icons/pi";
 import Style from "./leftbar.module.css";
+import service from "../../appwrite/config";
 
 const Leftbar = ({ userData }) => {
   return (
@@ -12,7 +13,15 @@ const Leftbar = ({ userData }) => {
     >
       <div className="flex relative flex-col mt-4 bg-[rgba(217,222,226,1)] rounded-3xl p-4 min-h-[27rem] shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)]">
         <div className="flex p-1 w-full h-32 bg-[rgba(217,217,217,1)] rounded-2xl shadow-[0px_4px_4px_0px_rgba(143,125,125,0.42)_inset,0px_4px_4px_0px_rgba(255,255,255,0.25)]">
-          <img src="/img/nature.jpg" alt="bg-image" className="rounded-2xl" />
+          <img
+            src={
+              userData.coverImageId
+                ? service.getFilePreview(userData.coverImageId)
+                : "/img/nature.jpg"
+            }
+            alt="bg-image"
+            className="rounded-2xl"
+          />
         </div>
         <div className="flex rounded-full absolute top-[23%] left-[35%] bg-black">
           <img

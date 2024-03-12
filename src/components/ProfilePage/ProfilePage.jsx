@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Style from "./ProfilePage.module.css";
 import { FaCamera } from "react-icons/fa";
 import { FaFaceLaugh } from "react-icons/fa6";
@@ -10,8 +10,11 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CreatePost from "../createpost/CreatePost";
 import PostForm from "../postform/PostForm";
+import service from "../../appwrite/config";
 
 const ProfilePage = () => {
+  const inputRef = useRef();
+  const coverRef = useRef();
   const [showModal, setShowModal] = useState(false);
   const closeModal = () => {
     return setShowModal(false);
@@ -24,6 +27,63 @@ const ProfilePage = () => {
       navigate("/login");
     }
   }, [authStatus, navigate]);
+
+  const handleInputClick = () => {
+    inputRef.current.click();
+  };
+  const handleProfileImage = async (e) => {
+    const profileImg = e.target.files[0];
+    // console.log(userData);
+    if (userData.imageId != null) {
+      const previmgId = userData.imageId;
+      const updated = await service.updateProfileImg({
+        profileImg: profileImg,
+        previmgId: previmgId,
+        documentId: userData.$id,
+      });
+      if (updated) {
+        console.log("success");
+        window.location.reload(false);
+      }
+    } else {
+      const updated = await service.addProfileImg({
+        profileImg: profileImg,
+        documentId: userData.$id,
+      });
+      if (updated) {
+        console.log("success");
+        window.location.reload(false);
+      }
+    }
+  };
+  const handleCoverClick = () => {
+    coverRef.current.click();
+  };
+  const handleCoverImage = async (e) => {
+    const coverImg = e.target.files[0];
+    // console.log(userData);
+    if (userData.coverImageId != null) {
+      const previmgId = userData.coverImageId;
+      const updated = await service.updateCoverImg({
+        coverImg: coverImg,
+        previmgId: previmgId,
+        documentId: userData.$id,
+      });
+      if (updated) {
+        console.log("success");
+        window.location.reload(false);
+      }
+    } else {
+      const updated = await service.addCoverImg({
+        coverImg: coverImg,
+        documentId: userData.$id,
+      });
+      if (updated) {
+        console.log("success");
+        window.location.reload(false);
+      }
+    }
+  };
 
   return (
     <div className="w-full bg-[rgba(236,238,240,1)] min-w-[470px]">
@@ -41,11 +101,25 @@ const ProfilePage = () => {
           <div className="flex flex-col w-full mt-4 p-4 gap-6 bg-[rgba(236,238,240,1)] rounded-3xl shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)] h-[40rem]">
             <div className="flex relative p-1 w-full h-72 bg-[rgba(217,217,217,1)] rounded-2xl shadow-[0px_4px_4px_0px_rgba(143,125,125,0.42)_inset,0px_4px_4px_0px_rgba(255,255,255,0.25)]">
               <img
-                src="/img/nature.jpg"
+                src={
+                  userData.coverImageId
+                    ? service.getFilePreview(userData.coverImageId)
+                    : "/img/nature.jpg"
+                }
                 alt="bg-image"
-                className="rounded-2xl object-cover"
+                className="rounded-2xl h-full w-full"
               />
-              <button className="absolute flex items-center right-2 py-2 px-4 top-[80%] focus:outline-none bg-[rgba(129,129,129,0.5)] hover:bg-blue-700 text-white font-semibold rounded-xl">
+              <button
+                onClick={handleCoverClick}
+                className="absolute flex items-center right-2 py-2 px-4 top-[80%] focus:outline-none bg-[rgba(129,129,129,0.5)] hover:bg-blue-700 text-white font-semibold rounded-xl"
+              >
+                <input
+                  type="file"
+                  accept=".jpeg,.jpg,.png"
+                  ref={coverRef}
+                  onChange={handleCoverImage}
+                  className="w-1 h-1 outline-none bg-inherit rounded-full absolute"
+                />
                 <FaCamera className="mr-1" />
                 Edit cover image
               </button>
@@ -55,7 +129,17 @@ const ProfilePage = () => {
                   alt="avatar"
                   className="h-40 w-40 rounded-full"
                 />
-                <button className="absolute right-2 bottom-2 bg-gray-500 rounded-full p-2 text-white hover:bg-blue-700">
+                <button
+                  onClick={handleInputClick}
+                  className="absolute right-2 bottom-2 bg-gray-500 rounded-full p-2 text-white hover:bg-blue-700"
+                >
+                  <input
+                    type="file"
+                    accept=".jpeg,.jpg,.png,.svg"
+                    ref={inputRef}
+                    onChange={handleProfileImage}
+                    className="w-0 h-0 outline-none bg-inherit rounded-full absolute"
+                  />
                   <FaCamera size={20} />
                 </button>
               </div>
@@ -76,11 +160,11 @@ const ProfilePage = () => {
           {/* create post */}
           <div className="flex flex-col w-full mt-4 p-10 gap-6 bg-[rgba(236,238,240,1)] rounded-3xl shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)]">
             <div className="flex mx-2 justify-center gap-4">
-              <div className="rounded-full flow-root w-12 h-12 bg-black">
+              <div className="rounded-full flex w-12 h-12">
                 <img
-                  src={userData.imageUrl || "/images/avatar.jpeg"}
+                  src={userData?.imageUrl || "/images/avatar.jpeg"}
                   alt="avatar"
-                  className="rounded-full"
+                  className="rounded-full w-12 h-12"
                 />
               </div>
               <div className="flex w-4/5 rounded-3xl justify-center items-center text-black bg-[rgba(217,217,217,1)] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)_inset]">
