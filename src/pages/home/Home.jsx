@@ -39,7 +39,7 @@ function Home() {
                 <img
                   src={userData.imageUrl || "/images/avatar.jpeg"}
                   alt="avatar"
-                  className="rounded-full"
+                  className="rounded-full w-12 h-12"
                 />
               </div>
               <div className="flex w-4/5 rounded-3xl justify-center items-center text-black bg-[rgba(217,217,217,1)] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)_inset]">
