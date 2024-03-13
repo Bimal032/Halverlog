@@ -20,7 +20,7 @@ const Leftbar = ({ userData }) => {
                 : "/img/nature.jpg"
             }
             alt="bg-image"
-            className="rounded-2xl"
+            className="rounded-2xl w-full h-full object-cover"
           />
         </div>
         <div className="flex rounded-full absolute top-[23%] left-[35%] bg-black">
