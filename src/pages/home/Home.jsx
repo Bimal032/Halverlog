@@ -37,7 +37,7 @@ function Home() {
             <div className="flex mx-2 justify-center gap-4">
               <div className="rounded-full flow-root w-12 h-12 bg-black">
                 <img
-                  src={userData.imageUrl || "/images/avatar.jpeg"}
+                  src={userData?.imageUrl || "/images/avatar.jpeg"}
                   alt="avatar"
                   className="rounded-full w-12 h-12"
                 />

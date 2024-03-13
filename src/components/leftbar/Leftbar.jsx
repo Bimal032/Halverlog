@@ -15,12 +15,12 @@ const Leftbar = ({ userData }) => {
         <div className="flex p-1 w-full h-32 bg-[rgba(217,217,217,1)] rounded-2xl shadow-[0px_4px_4px_0px_rgba(143,125,125,0.42)_inset,0px_4px_4px_0px_rgba(255,255,255,0.25)]">
           <img
             src={
-              userData.coverImageId
+              userData?.coverImageId
                 ? service.getFilePreview(userData.coverImageId)
                 : "/img/nature.jpg"
             }
             alt="bg-image"
-            className="rounded-2xl"
+            className="rounded-2xl w-full object-cover"
           />
         </div>
         <div className="flex rounded-full absolute top-[23%] left-[35%] bg-black">

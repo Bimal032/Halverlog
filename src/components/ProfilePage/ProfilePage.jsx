@@ -107,7 +107,7 @@ const ProfilePage = () => {
                     : "/img/nature.jpg"
                 }
                 alt="bg-image"
-                className="rounded-2xl h-full w-full"
+                className="rounded-2xl h-full w-full object-cover"
               />
               <button
                 onClick={handleCoverClick}
