@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./index.css";
 import LoginPage from "./pages/loginPage/LoginPage.jsx";
-import Register from "./pages/registerPage/Register.jsx";
+import Register from "./pages/registerpage/Register.jsx";
 import ProfilePage from "./components/ProfilePage/ProfilePage.jsx";
 import Home from "./pages/home/Home.jsx";
 // import AuthLayout from "./AuthLayout.jsx";
