@@ -84,15 +84,15 @@ const ProfilePage = () => {
       }
     }
   };
-
+  const [clicked, setClicked] = useState("hide")
   return (
     <div className="w-full bg-[rgba(236,238,240,1)] min-w-[470px]">
       {/* navbar starts*/}
-      <Navbar userData={userData} />
+      <Navbar userData={userData} clicked={clicked} setClicked={setClicked}/>
       {/* navbar ends */}
       <div className="flex w-full relative h-full mt-[5rem]">
         {/* Leftbar start */}
-        <Leftbar userData={userData} />
+        <Leftbar userData={userData} clicked={clicked}/>
         {/* middle content start*/}
         <div
           className={`hide-scroll p-2 bg-[rgba(236,238,240,1)] w-[50%] max-[1000px]:w-[65%] flex flex-col z-[1] ${Style.add} h-[53rem] overflow-y-auto`}

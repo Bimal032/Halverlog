@@ -10,7 +10,7 @@ import authService from "../../appwrite/auth";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/authSlice";
 
-const Navbar = ({ userData }) => {
+const Navbar = ({ userData, clicked, setClicked }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleLogout = () => {
@@ -19,9 +19,16 @@ const Navbar = ({ userData }) => {
       navigate("/login");
     });
   };
+  const handleClick = () => {
+    if (clicked === "hide"){
+      setClicked("show")
+    }else{
+      setClicked("hide")
+    }
+  }
   return (
     <nav className="flex fixed top-0 h-[5rem] rounded-b-lg bg-[rgba(231,231,231,1)] w-full justify-around py-5 items-center shadow-[0px_6px_16px_0px_rgba(0,0,0,0.25)] z-[5]">
-      <button className="lg:hidden md:hidden pl-2">
+      <button className="lg:hidden md:hidden pl-2" onClick={handleClick}>
         <GiHamburgerMenu size={30} />
       </button>
       <div className="mr-2 min-w-fit">
