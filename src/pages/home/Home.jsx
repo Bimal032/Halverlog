@@ -22,11 +22,12 @@ function Home() {
       navigate("/login");
     }
   }, [authStatus, navigate]);
+  const [clicked, setClicked] = useState("hide")
   return (
     <div className="w-full bg-[rgba(236,238,240,1)] min-w-[470px] min-h-[100lvh]">
-      <Navbar userData={userData} />
+      <Navbar userData={userData} clicked={clicked} setClicked={setClicked}/>
       <div className="flex w-full relative h-full mt-[5rem]">
-        <Leftbar userData={userData} />
+        <Leftbar userData={userData} clicked={clicked} />
         <div
           className={`hide-scroll overflow-y-auto p-2 bg-[rgba(236,238,240,1)] h-[55rem] w-[50%] max-[900px]:w-[65%] flex flex-col z-[1] ${Style.add}`}
         >
