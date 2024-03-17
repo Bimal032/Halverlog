@@ -1,115 +1,193 @@
 import conf from '../conf/conf.js';
-import { Client, Databases ,Storage,Query,ID,Avatars} from "appwrite";
+import { Client, Databases, Storage, Query, ID, Avatars } from "appwrite";
 
-export class Service{
-    client=new Client();
+export class Service {
+    client = new Client();
     databases;
     bucket;
     avatars;
 
-    constructor(){
+    constructor() {
         this.client.setEndpoint(conf.appwriteProjectUrl).setProject(conf.appwriteProjectId);
-        this.databases=new Databases(this.client);
-        this.bucket=new Storage(this.client);
-        this.avatars=new Avatars(this.client);
+        this.databases = new Databases(this.client);
+        this.bucket = new Storage(this.client);
+        this.avatars = new Avatars(this.client);
     }
-    async saveUserToDB({accountId,name,email,username}){
+    async saveUserToDB({ accountId, name, email, username }) {
         const imageUrl = this.avatars.getInitials(name);
         try {
-            const newUser=await this.databases.createDocument(
+            const newUser = await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteUsersCollectionId,
                 ID.unique(),
-                {accountId,name,email,username,imageUrl}
-                )
+                { accountId, name, email, username, imageUrl }
+            )
             return newUser;
         } catch (error) {
-            console.log("Service : saveUserToDB :: ",error);
+            console.log("Service : saveUserToDB :: ", error);
         }
     }
 
-    async getUserData({accountId}){
+    async getUserData({ accountId }) {
         // console.log("accountId",accountId);
         try {
-            const currentUserData=await this.databases.listDocuments(
+            const currentUserData = await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteUsersCollectionId,
-                [Query.equal("accountId",accountId)]
-                )
+                [Query.equal("accountId", accountId)]
+            )
             return currentUserData.documents[0];
         } catch (error) {
-            console.log("service : getUserData :: ",error);
+            console.log("service : getUserData :: ", error);
         }
-    }
-    async deleteFileFromBucket({fileId}){
-        try{
-            return await this.bucket.deleteFile(conf.appwriteBucketId,fileId);
-        }catch(error){
-            console.log("service : deleteFileFromBucket() :: ",error);
-        }
-    }
-    async addProfileImg({profileImg,documentId}){
-        console.log("add profile Image called")
-        try{
-            const profileimgId = await this.bucket.createFile(conf.appwriteBucketId,ID.unique(),profileImg);
-            if(profileimgId){
-                const fileUrl=this.getFilePreview(profileimgId.$id);
-                return await this.databases.updateDocument(
-                    conf.appwriteDatabaseId,
-                    conf.appwriteUsersCollectionId,
-                    documentId,
-                    {imageUrl:fileUrl,imageId:profileimgId.$id},
-                    )
-            }
-        }catch(error){
-            console.log("service : addProfileImg :: ",error);
-        }
-    }
-    async updateProfileImg({profileImg, previmgId,documentId}){
-        console.log("update profile image call");
-        try{
-            const process= await this.addProfileImg({profileImg:profileImg,documentId:documentId});
-            if(process){
-            return await this.deleteFileFromBucket({fileId:previmgId});
-            }
-        }catch(error){
-        console.log("service : updateProfileImg :: ",error);
-        }
-    }
-    async addCoverImg({coverImg,documentId}){
-        console.log("add cover Image called")
-        try{
-            const coverimgId = await this.bucket.createFile(conf.appwriteBucketId,ID.unique(),coverImg);
-            if(coverimgId){
-                return await this.databases.updateDocument(
-                    conf.appwriteDatabaseId,
-                    conf.appwriteUsersCollectionId,
-                    documentId,
-                    {coverImageId:coverimgId.$id},
-                    )
-            }
-        }catch(error){
-            console.log("service : addCoverImg :: ",error);
-        }
-    }
-    async updateCoverImg({coverImg, previmgId,documentId}){
-        console.log("update cover image call");
-        try{
-            const process= await this.addCoverImg({coverImg:coverImg,documentId:documentId});
-            if(process){
-            return await this.deleteFileFromBucket({fileId:previmgId});
-            }
-        }catch(error){
-        console.log("service : updateCoverImg :: ",error);
-        }
-    }
-    getFilePreview(fileId){
-        return this.bucket.getFilePreview(conf.appwriteBucketId,fileId).href;
     }
 
+    async deleteFileFromBucket({ fileId }) {
+        try {
+            return await this.bucket.deleteFile(conf.appwriteBucketId, fileId);
+        } catch (error) {
+            console.log("service : deleteFileFromBucket() :: ", error);
+        }
+    }
+
+    async addProfileImg({ profileImg, documentId }) {
+        console.log("add profile Image called")
+        try {
+            const profileimgId = await this.bucket.createFile(conf.appwriteBucketId, ID.unique(), profileImg);
+            if (profileimgId) {
+                const fileUrl = this.getFilePreview(profileimgId.$id);
+                return await this.databases.updateDocument(
+                    conf.appwriteDatabaseId,
+                    conf.appwriteUsersCollectionId,
+                    documentId,
+                    { imageUrl: fileUrl, imageId: profileimgId.$id },
+                )
+            }
+        } catch (error) {
+            console.log("service : addProfileImg :: ", error);
+        }
+    }
+
+    async updateProfileImg({ profileImg, previmgId, documentId }) {
+        console.log("update profile image call");
+        try {
+            const process = await this.addProfileImg({ profileImg: profileImg, documentId: documentId });
+            if (process) {
+                return await this.deleteFileFromBucket({ fileId: previmgId });
+            }
+        } catch (error) {
+            console.log("service : updateProfileImg :: ", error);
+        }
+    }
+
+    async addCoverImg({ coverImg, documentId }) {
+        console.log("add cover Image called")
+        try {
+            const coverimgId = await this.bucket.createFile(conf.appwriteBucketId, ID.unique(), coverImg);
+            if (coverimgId) {
+                return await this.databases.updateDocument(
+                    conf.appwriteDatabaseId,
+                    conf.appwriteUsersCollectionId,
+                    documentId,
+                    { coverImageId: coverimgId.$id },
+                )
+            }
+        } catch (error) {
+            console.log("service : addCoverImg :: ", error);
+        }
+    }
+
+    async updateCoverImg({ coverImg, previmgId, documentId }) {
+        console.log("update cover image call");
+        try {
+            const process = await this.addCoverImg({ coverImg: coverImg, documentId: documentId });
+            if (process) {
+                return await this.deleteFileFromBucket({ fileId: previmgId });
+            }
+        } catch (error) {
+            console.log("service : updateCoverImg :: ", error);
+        }
+    }
+
+    getFilePreview(fileId) {
+        return this.bucket.getFilePreview(conf.appwriteBucketId, fileId).href;
+    }
+
+    async createPost(data) {
+        try {
+            const file = await this.bucket.createFile(conf.appwriteBucketId, ID.unique(), data.image);
+            if (file) {
+                const imageUrl = this.getFilePreview(file.$id);
+                const post = await this.databases.createDocument(
+                    conf.appwriteDatabaseId,
+                    conf.appwritePostsCollectionId,
+                    ID.unique(),
+                    { creator: data.creator, caption: data.caption, imageId: file.$id, status: data.status, imageUrl: imageUrl },
+                )
+                return post;
+            }
+        } catch (error) {
+            console.log("service : createPost :: ", error);
+        }
+    }
+
+    async fetchPublicPost() {
+        try {
+            const fetch = await this.databases.listDocuments(conf.appwriteDatabaseId,
+                conf.appwritePostsCollectionId,
+                [
+                    Query.orderDesc("$createdAt"),
+                    Query.equal("status", ["public"]),
+                ]
+            )
+            return fetch.documents;
+
+        } catch (error) {
+            console.log("service : fetchPublicPost :: ", error);
+        }
+    }
+
+    async fetchProfilePost(userId) {
+        try {
+            const fetch = await this.databases.listDocuments(conf.appwriteDatabaseId,
+                conf.appwritePostsCollectionId,
+                [
+                    Query.orderDesc("$createdAt"),
+                    Query.equal("creator", [userId]),
+                ]
+            )
+            return fetch.documents;
+
+        } catch (error) {
+            console.log("service : fetchProfilePost :: ", error);
+        }
+    }
+
+    async deletePost(post) {
+        try {
+            const response = this.databases.deleteDocument(conf.appwriteDatabaseId, conf.appwritePostsCollectionId, post.$id);
+            if (response) {
+                return await this.deleteFileFromBucket({ fileId: post.imageId });
+            }
+        } catch (error) {
+            console.log("service : deletePost() :: ", error);
+        }
+    }
+
+    async updateLike(postId,newLikes){
+        // console.log("updating Like...")
+        try {
+            return await this.databases.updateDocument(conf.appwriteDatabaseId,
+                conf.appwritePostsCollectionId,
+                postId,
+                {likes:newLikes})
+        } catch (error) {
+            console.log("service : updateLike() :: ", error);
+        }
+    }
 }
 
-const service=new Service();
+const service = new Service();
 export default service;
 
 

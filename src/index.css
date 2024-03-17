@@ -4,7 +4,7 @@
 
 @layer utilities {
   .bottombtn {
-    @apply flex bg-[rgba(236,238,240,1)] w-8 h-8 justify-center items-center rounded-lg shadow-[-4px_-3px_4px_0px_rgba(255,255,255,1),3px_4px_4px_0px_rgba(0,0,0,0.25)] hover:scale-105;
+    @apply flex bg-[rgba(236,238,240,1)] w-10 h-10 justify-center items-center rounded-lg shadow-[-4px_-3px_4px_0px_rgba(255,255,255,1),3px_4px_4px_0px_rgba(0,0,0,0.25)] hover:scale-105;
   }
   .navbtn {
     @apply flex bg-[rgba(236,238,240,1)] justify-center items-center w-12 h-10 p-1 rounded-xl shadow-[-4px_-3px_4px_0px_rgba(255,255,255,1),3px_4px_4px_0px_rgba(0,0,0,0.25)] hover:scale-110;
@@ -20,6 +20,9 @@
   }
   .active {
     @apply hover:fill-blue-500  hover:text-blue-500;
+  }
+  .activate {
+    @apply fill-blue-500 text-blue-500;
   }
 }
 

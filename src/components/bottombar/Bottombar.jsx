@@ -9,16 +9,16 @@ const Bottombar = ({ userData }) => {
     <div className="fixed bottom-0 h-14 bg-[rgba(231,231,231,1)] w-full lg:hidden z-10">
       <div className="flex gap-2 items-center justify-around h-full">
         <Link to="/" className="bottombtn">
-          <MdHome size={20} color="grey" className="hover:fill-black" />
+          <MdHome size={25} color="grey" className="active" />
         </Link>
         <Link to="#" className="bottombtn">
-          <BsChatDotsFill size={20} color="grey" className="hover:fill-black" />
+          <BsChatDotsFill size={25} color="grey" className="active" />
         </Link>
         <Link to="#" className="bottombtn">
-          <FaBell size={20} color="grey" className="hover:fill-black" />
+          <FaBell size={25} color="grey" className="active" />
         </Link>
         <Link to="#" className="bottombtn">
-          <FaUsers size={20} color="grey" className="hover:fill-black" />
+          <FaUsers size={25} color="grey" className="active" />
         </Link>
       </div>
     </div>

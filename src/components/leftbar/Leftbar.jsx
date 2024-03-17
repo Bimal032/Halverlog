@@ -4,16 +4,18 @@ import { FaBookmark } from "react-icons/fa6";
 import { FaUsers } from "react-icons/fa";
 import { PiVideoFill } from "react-icons/pi";
 import Style from "./leftbar.module.css";
-import "./leftbar.css"
+import "./leftbar.css";
 import service from "../../appwrite/config";
+import { useLocation } from "react-router-dom";
 
 const Leftbar = ({ userData, clicked }) => {
-  console.log(clicked)
+  const location=useLocation();
+  // console.log(location);
   return (
     <div
       className={`flex flex-col bg-[rgba(236,238,240,1)] w-[25%] max-[1000px]:w-[35%] min-w-72 px-6 py-2 ${clicked}`}
     >
-      <div className="flex relative flex-col mt-4 bg-[rgba(217,222,226,1)] rounded-3xl p-4 min-h-[27rem] shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)]">
+      <div className={"relative flex-col mt-4 bg-[rgba(217,222,226,1)] rounded-3xl p-4 min-h-[27rem] shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)] "+(location.pathname=="/"?"hidden":"flex")}>
         <div className="flex p-1 w-full h-32 bg-[rgba(217,217,217,1)] rounded-2xl shadow-[0px_4px_4px_0px_rgba(143,125,125,0.42)_inset,0px_4px_4px_0px_rgba(255,255,255,0.25)]">
           <img
             src={
@@ -42,15 +44,15 @@ const Leftbar = ({ userData, clicked }) => {
           <div className="flex justify-around">
             <div className="flex flex-col items-center">
               <button className="profilebutton active">Post</button>
-              <span className="mt-2">00</span>
+              <span className="mt-2">{userData?userData.post.length:0}</span>
             </div>
             <div className="flex flex-col items-center">
               <button className="profilebutton active">Followers</button>
-              <span className="mt-2">00</span>
+              <span className="mt-2">0</span>
             </div>
             <div className="flex flex-col items-center">
               <button className="profilebutton active">Following</button>
-              <span className="mt-2">00</span>
+              <span className="mt-2">0</span>
             </div>
           </div>
           <div className="flex w-full justify-center">

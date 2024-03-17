@@ -11,27 +11,37 @@ import { useSelector } from "react-redux";
 import CreatePost from "../createpost/CreatePost";
 import PostForm from "../postform/PostForm";
 import service from "../../appwrite/config";
+import { BeatLoader, BounceLoader, FadeLoader } from "react-spinners";
 
 const ProfilePage = () => {
   const inputRef = useRef();
   const coverRef = useRef();
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+  const [clicked, setClicked] = useState("hide");
+  const [loader, setloader] = useState(false);
+  const [ploader, setPloader] = useState(false);
+  const [cloader, setCloader] = useState(false);
+  const authStatus = useSelector((state) => state.auth.status);
+  const userData = useSelector((state) => state.auth.userData);
+  const [posts, setPosts] = useState([]);
+
   const closeModal = () => {
     return setShowModal(false);
   };
-  const navigate = useNavigate();
-  const authStatus = useSelector((state) => state.auth.status);
-  const userData = useSelector((state) => state.auth.userData);
   useEffect(() => {
     if (!authStatus) {
       navigate("/login");
     }
+    fetch();
   }, [authStatus, navigate]);
 
   const handleInputClick = () => {
     inputRef.current.click();
   };
+
   const handleProfileImage = async (e) => {
+    setPloader(true);
     const profileImg = e.target.files[0];
     // console.log(userData);
     if (userData.imageId != null) {
@@ -56,10 +66,13 @@ const ProfilePage = () => {
       }
     }
   };
+
   const handleCoverClick = () => {
     coverRef.current.click();
   };
+
   const handleCoverImage = async (e) => {
+    setCloader(true);
     const coverImg = e.target.files[0];
     // console.log(userData);
     if (userData.coverImageId != null) {
@@ -71,7 +84,7 @@ const ProfilePage = () => {
       });
       if (updated) {
         console.log("success");
-        window.location.reload(false);
+        window.location.reload();
       }
     } else {
       const updated = await service.addCoverImg({
@@ -80,35 +93,48 @@ const ProfilePage = () => {
       });
       if (updated) {
         console.log("success");
-        window.location.reload(false);
+        window.location.reload();
       }
     }
   };
-  const [clicked, setClicked] = useState("hide")
+
+  async function fetch() {
+    setloader(true);
+    let response = await service.fetchProfilePost(userData.$id);
+    setPosts(response);
+    // console.log(response);
+    setloader(false);
+  }
   return (
     <div className="w-full bg-[rgba(236,238,240,1)] min-w-[470px]">
       {/* navbar starts*/}
-      <Navbar userData={userData} clicked={clicked} setClicked={setClicked}/>
+      <Navbar userData={userData} clicked={clicked} setClicked={setClicked} />
       {/* navbar ends */}
       <div className="flex w-full relative h-full mt-[5rem]">
         {/* Leftbar start */}
-        <Leftbar userData={userData} clicked={clicked}/>
+        <Leftbar userData={userData} clicked={clicked} />
         {/* middle content start*/}
         <div
           className={`hide-scroll p-2 bg-[rgba(236,238,240,1)] w-[50%] max-[1000px]:w-[65%] flex flex-col z-[1] ${Style.add} h-[53rem] overflow-y-auto`}
         >
           {/* profile image with name starts */}
-          <div className="flex flex-col w-full mt-4 p-4 gap-6 bg-[rgba(236,238,240,1)] rounded-3xl shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)] h-[40rem]">
+          <div className="flex flex-col w-full mt-4 p-4 gap-6 bg-[rgba(236,238,240,1)] rounded-3xl shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)]">
             <div className="flex relative p-1 w-full h-72 bg-[rgba(217,217,217,1)] rounded-2xl shadow-[0px_4px_4px_0px_rgba(143,125,125,0.42)_inset,0px_4px_4px_0px_rgba(255,255,255,0.25)]">
-              <img
-                src={
-                  userData.coverImageId
-                    ? service.getFilePreview(userData.coverImageId)
-                    : "/img/nature.jpg"
-                }
-                alt="bg-image"
-                className="rounded-2xl h-full w-full object-cover"
-              />
+              {cloader ? (
+                <div className="w-full h-full flex items-center justify-center">
+                  <BeatLoader color="#36d7b7" size={30} />
+                </div>
+              ) : (
+                <img
+                  src={
+                    userData.coverImageId
+                      ? service.getFilePreview(userData?.coverImageId)
+                      : "/img/nature.jpg"
+                  }
+                  alt="bg-image"
+                  className="rounded-2xl h-full w-full object-cover"
+                />
+              )}
               <button
                 onClick={handleCoverClick}
                 className="absolute flex items-center right-2 py-2 px-4 top-[80%] focus:outline-none bg-[rgba(129,129,129,0.5)] hover:bg-blue-700 text-white font-semibold rounded-xl"
@@ -124,11 +150,17 @@ const ProfilePage = () => {
                 Edit cover image
               </button>
               <div className="absolute top-[50%] left-4 bg-black rounded-full">
-                <img
-                  src={userData?.imageUrl || "/images/avatar.jpeg"}
-                  alt="avatar"
-                  className="h-40 w-40 rounded-full"
-                />
+                {ploader ? (
+                  <div className="h-40 w-40 rounded-full flex items-center justify-center">
+                    <BounceLoader color="#36d7b7" size={80} />
+                  </div>
+                ) : (
+                  <img
+                    src={userData?.imageUrl || "/images/avatar.jpeg"}
+                    alt="avatar"
+                    className="h-40 w-40 rounded-full"
+                  />
+                )}
                 <button
                   onClick={handleInputClick}
                   className="absolute right-2 bottom-2 bg-gray-500 rounded-full p-2 text-white hover:bg-blue-700"
@@ -210,11 +242,17 @@ const ProfilePage = () => {
               </button>
             </div>
           </div>
-          {showModal && <CreatePost closeModal={closeModal} />}
+          {showModal && (
+            <CreatePost userData={userData} closeModal={closeModal} />
+          )}
           {/* post template */}
-          <PostForm />
-          <PostForm />
-          <PostForm />
+          {loader ? (
+            <div className="flex justify-center items-center h-40">
+              <FadeLoader color="#0000ff" />
+            </div>
+          ) : (
+            posts.map((post) => <PostForm key={post.caption} post={post} />)
+          )}
         </div>
         {/* Rightbar starts */}
         <Rightbar userData={userData} />
