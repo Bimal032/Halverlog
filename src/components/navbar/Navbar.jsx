@@ -27,6 +27,10 @@ const Navbar = ({ userData, clicked, setClicked }) => {
       setClicked("hide");
     }
   };
+
+  const handleSearch = () => {
+    navigate("/search");
+  };
   return (
     <nav className="flex fixed top-0 h-[5rem] rounded-b-lg bg-[rgba(231,231,231,1)] w-full justify-around py-5 items-center shadow-[0px_6px_16px_0px_rgba(0,0,0,0.25)] z-[5]">
       <button className="lg:hidden md:hidden pl-2" onClick={handleClick}>
@@ -39,8 +43,9 @@ const Navbar = ({ userData, clicked, setClicked }) => {
         <IoMdSearch size={20} />
         <input
           type="text"
-          className="w-[80%] bg-inherit ml-2 pl-2 text-sm h-1/3 outline-none active"
+          className="w-[80%] bg-inherit ml-2 pl-2 text-sm h-1/2 outline-none active"
           placeholder="search"
+          onClick={handleSearch}
         />
       </div>
       <div className="hidden gap-4 items-center h-full lg:flex">
@@ -60,14 +65,20 @@ const Navbar = ({ userData, clicked, setClicked }) => {
             <p className="text-xs ml-1 font-semibold active">Home</p>
           </Link>
         </div>
-        <Link to="#" className="navbtn">
-          <BsChatDotsFill size={20} className="active" />
+        <Link to="/message" className="navbtn">
+          <BsChatDotsFill
+            size={20}
+            className={location.pathname == "/message" ? "activate" : "active"}
+          />
         </Link>
         <Link to="#" className="navbtn">
           <FaBell size={20} className="active" />
         </Link>
-        <Link to="#" className="navbtn">
-          <FaUsers size={20} className="active" />
+        <Link to="/friends" className="navbtn">
+          <FaUsers
+            size={20}
+            className={location.pathname == "/friends" ? "activate" : "active"}
+          />
         </Link>
       </div>
       <div className="flex items-center gap-2 ml-2 min-w-max">

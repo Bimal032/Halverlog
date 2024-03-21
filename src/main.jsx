@@ -10,6 +10,9 @@ import ProfilePage from "./components/ProfilePage/ProfilePage.jsx";
 import Home from "./pages/home/Home.jsx";
 // import AuthLayout from "./AuthLayout.jsx";
 import store from "./store/store.js";
+import SearchPage from "./components/searchpage/SearchPage.jsx";
+import Friends from "./components/friendpage/Friends.jsx";
+import Message from "./components/message/message.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,13 +31,21 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
-      // {
-      //   path: "/profile",
-      //   element: <Profile />,
-      // },
+      {
+        path: "/search",
+        element: <SearchPage />,
+      },
       {
         path: "/profile/:id",
         element: <ProfilePage />,
+      },
+      {
+        path: "/friends",
+        element: <Friends />,
+      },
+      {
+        path: "/message",
+        element: <Message />,
       },
     ],
   },

@@ -46,8 +46,8 @@ const Home = () => {
         <div
           className={`hide-scroll overflow-y-auto p-2 bg-[rgba(236,238,240,1)] h-[55rem] w-[50%] max-[900px]:w-[65%] flex flex-col z-[1] ${Style.add}`}
         >
-          <div className="text-2xl font-bold p-2 sticky -top-2 h-16 bg-[rgba(236,238,240,1)]">
-            Home Feed
+          <div className="w-full h-16 sticky top-[-0.3rem] mt-4 bg-[rgba(236,238,240,1)] rounded-lg p-4 shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)] justify-center flex">
+            <div className="font-semibold ml-2 mt-1 text-lg">Home Feed</div>
           </div>
           <div className="flex flex-col w-full mt-4 p-10 gap-6 bg-[rgba(236,238,240,1)] rounded-3xl shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)]">
             <div className="flex mx-2 justify-center gap-4">
@@ -108,6 +108,7 @@ const Home = () => {
             {loader ? (
               <div className="flex justify-center items-center h-40">
                 <FadeLoader color="#0000ff" />
+                <p className="text-lg ml-4 text-blue-500">Loading...</p>
               </div>
             ) : (
               posts.map((post) => <PostForm key={post.caption} post={post} />)

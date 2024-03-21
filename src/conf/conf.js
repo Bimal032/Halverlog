@@ -5,5 +5,6 @@ const conf={
     appwriteDatabaseId: String(import.meta.env.VITE_APPWRITE_DATABASE_ID),
     appwriteUsersCollectionId: String(import.meta.env.VITE_APPWRITE_USERS_COLLECTION_ID),
     appwritePostsCollectionId: String(import.meta.env.VITE_APPWRITE_POSTS_COLLECTION_ID),
+    appwriteFriendsCollectionId: String(import.meta.env.VITE_APPWRITE_FRIENDS_COLLECTION_ID),
 }
 export default conf;
