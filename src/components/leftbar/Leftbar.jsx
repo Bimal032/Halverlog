@@ -11,6 +11,7 @@ import { useLocation } from "react-router-dom";
 const Leftbar = ({ userData, clicked }) => {
   const location = useLocation();
   // console.log(location);
+  // console.log(userData.friend.length);
   return (
     <div
       className={`flex flex-col bg-[rgba(236,238,240,1)] w-[25%] max-[1000px]:w-[35%] min-w-72 px-6 py-2 ${clicked}`}
@@ -59,7 +60,9 @@ const Leftbar = ({ userData, clicked }) => {
             </div>
             <div className="flex flex-col items-center">
               <button className="profilebutton active">Following</button>
-              <span className="mt-2">0</span>
+              <span className="mt-2">
+                {userData ? userData.friend.length : 0}
+              </span>
             </div>
           </div>
           <div className="flex w-full justify-center">
@@ -99,7 +102,7 @@ const Leftbar = ({ userData, clicked }) => {
         }
       >
         <div className="font-semibold ml-2 mt-1 self-start text-lg">
-          Add Section
+          Ad Section
         </div>
         <div className="flex p-1 w-full h-44 bg-[rgba(217,217,217,1)] rounded-2xl shadow-[0px_4px_4px_0px_rgba(143,125,125,0.42)_inset,0px_4px_4px_0px_rgba(255,255,255,0.25)]">
           <img

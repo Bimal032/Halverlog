@@ -9,7 +9,8 @@ const Rightbar = ({ userData }) => {
   const [temp, setTemp] = useState(
     userData.friend.map((user) => user.friendId)
   );
-  const [friend, setFriend] = useState(temp.map((user) => user.$id));
+  const eg = temp.map((user) => user.$id);
+  const [friend, setFriend] = useState(eg);
   // console.log(temp);
   // console.log(friend);
   const [pending, setPending] = useState(false);
@@ -20,24 +21,30 @@ const Rightbar = ({ userData }) => {
   }, []);
   const getSuggestion = async () => {
     const users = await service.getUsers({ accountId: userData.accountId });
-    const sug = users.filter((user) => !friend.includes(user.$id));
-    setSuggestion(sug);
-  };
-
-  const handleFriend = async (e, newUserId) => {
-    e.stopPropagation();
-    setPending(true);
-    const newFriend = [...temp];
-    newFriend.push(newUserId);
-    const res = await service.addFriend({
-      userId: userData.$id,
-      friendId: newUserId,
-    });
-    if (res) {
-      // window.location.reload();
-      setPending(false);
+    if (friend != null) {
+      const sug = users.filter((user) => !friend.includes(user.$id));
+      setSuggestion(sug);
     }
   };
+  const handleFriend = (e, newUser) => {
+    console.log(newUser);
+  };
+  // const handleFriend = async (e, newUser) => {
+  //   console.log(newUser);
+  //   setPending(true);
+  //   const newFriend = [...temp];
+  //   newFriend.push(newUser);
+  //   setTemp(newFriend);
+  //   const res = await service.addFriend({
+  //     userId: userData.$id,
+  //     friendId: newUser.$id,
+  //     name: userData.name,
+  //   });
+  //   if (res) {
+  //     // window.location.reload();
+  //     setPending(false);
+  //   }
+  // };
 
   return (
     <div className="w-[25%] bg-[rgba(236,238,240,1)] max-[1000px]:hidden py-2 px-6">
@@ -100,7 +107,7 @@ const Rightbar = ({ userData }) => {
                         <span className="text-xs">Suggestions</span>
                       </div>
                     </div>
-                    <button onClick={(e) => handleFriend(e, user.$id)}>
+                    <button onClick={(e) => handleFriend(e, user)}>
                       {pending ? (
                         <BounceLoader color="#000000" size={25} />
                       ) : (
