@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import Style from "../ProfilePage/ProfilePage.module.css";
 import Friend from "./Friend";
 
-const SearchPage = () => {
+const Friends = () => {
   const navigate = useNavigate();
   const authStatus = useSelector((state) => state.auth.status);
   const userData = useSelector((state) => state.auth.userData);
@@ -46,4 +46,4 @@ const SearchPage = () => {
   );
 };
 
-export default SearchPage;
+export default Friends;
