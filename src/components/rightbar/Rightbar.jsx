@@ -3,48 +3,62 @@ import { IoAddCircle } from "react-icons/io5";
 import service from "../../appwrite/config";
 import { BounceLoader } from "react-spinners";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Rightbar = ({ userData }) => {
   // console.log(userData);
+  const users = useSelector((state) => state.user.users);
   const [temp, setTemp] = useState(
-    userData.friend.map((user) => user.friendId)
+    userData?.friend.map((user) => user.friendId)
   );
-  const eg = temp.map((user) => user.$id);
-  const [friend, setFriend] = useState(eg);
   // console.log(temp);
+  const [friend, setFriend] = useState(
+    users.filter((user) => temp.includes(user.accountId))
+  );
   // console.log(friend);
   const [pending, setPending] = useState(false);
   const [suggestion, setSuggestion] = useState();
   // console.log(suggestion);
   useEffect(() => {
-    getSuggestion();
-  }, []);
-  const getSuggestion = async () => {
-    const users = await service.getUsers({ accountId: userData.accountId });
-    if (friend != null) {
-      const sug = users.filter((user) => !friend.includes(user.$id));
-      setSuggestion(sug);
+    // if (userData != null) {
+    //   setTemp(userData.friend.map((user) => user.friendId));
+    // }
+    if (users != null && temp != null) {
+      setSuggestion(
+        users.filter(
+          (user) =>
+            !temp.includes(user.accountId) &&
+            user.accountId != userData.accountId
+        )
+      );
     }
-  };
-  const handleFriend = (e, newUser) => {
-    console.log(newUser);
-  };
-  // const handleFriend = async (e, newUser) => {
-  //   console.log(newUser);
-  //   setPending(true);
-  //   const newFriend = [...temp];
-  //   newFriend.push(newUser);
-  //   setTemp(newFriend);
-  //   const res = await service.addFriend({
-  //     userId: userData.$id,
-  //     friendId: newUser.$id,
-  //     name: userData.name,
-  //   });
-  //   if (res) {
-  //     // window.location.reload();
-  //     setPending(false);
+    // getSuggestion();
+  }, [temp, friend]);
+  // const getSuggestion = async () => {
+  //   const users = await service.getUsers({ accountId: userData.accountId });
+  //   if (friend != null) {
+  //     const sug = users.filter((user) => !friend.includes(user.$id));
+  //     setSuggestion(sug);
   //   }
   // };
+  // const handleFriend = (e, newUser) => {
+  //   console.log(newUser.accountId);
+  // };
+  const handleFriend = async (e, newUser) => {
+    console.log(newUser);
+    setPending(true);
+    const newFriend = [...temp];
+    newFriend.push(newUser.accountId);
+    setTemp(newFriend);
+    const res = await service.addFriend({
+      userId: userData.$id,
+      friendId: newUser.accountId,
+    });
+    if (res) {
+      window.location.reload();
+      setPending(false);
+    }
+  };
 
   return (
     <div className="w-[25%] bg-[rgba(236,238,240,1)] max-[1000px]:hidden py-2 px-6">
@@ -57,8 +71,8 @@ const Rightbar = ({ userData }) => {
         </div>
         <div className="flex flex-col px-4 mt-2 gap-5 max-h-[20rem] overflow-y-auto">
           {/* friend list start*/}
-          {friend ? (
-            temp.map((user, index) => {
+          {friend.length > 0 ? (
+            friend.map((user, index) => {
               return (
                 <div key={index} className="flex gap-4">
                   <img

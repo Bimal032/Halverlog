@@ -13,6 +13,12 @@ const Message = () => {
   const authStatus = useSelector((state) => state.auth.status);
   const userData = useSelector((state) => state.auth.userData);
   const [clicked, setClicked] = useState("hide");
+  const users = useSelector((state) => state.user.users);
+  const [temp1, setTemp1] = useState(
+    userData.friend.map((user) => {
+      return user.friendId;
+    })
+  );
   // console.log(userData);
   useEffect(() => {
     if (!authStatus) {
@@ -20,7 +26,7 @@ const Message = () => {
     }
   }, [authStatus, navigate]);
   const [temp, setTemp] = useState(
-    userData.friend.map((user) => user.friendId)
+    users.filter((user) => temp1.includes(user.accountId))
   );
   return (
     <div className="w-full bg-[rgba(236,238,240,1)] min-w-[470px] min-h-[100lvh]">

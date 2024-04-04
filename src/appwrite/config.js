@@ -169,6 +169,18 @@ export class Service {
       console.log("service : fetchPublicPost :: ", error);
     }
   }
+  async fetchPost() {
+    try {
+      const fetch = await this.databases.listDocuments(
+        conf.appwriteDatabaseId,
+        conf.appwritePostsCollectionId,
+        [Query.orderDesc("$createdAt")]
+      );
+      return fetch.documents;
+    } catch (error) {
+      console.log("service : fetchPost :: ", error);
+    }
+  }
 
   async fetchProfilePost(userId) {
     try {
@@ -212,13 +224,12 @@ export class Service {
     }
   }
 
-  async getUsers({ accountId }) {
+  async getUsers() {
     // console.log("accountId",accountId);
     try {
       const currentUserData = await this.databases.listDocuments(
         conf.appwriteDatabaseId,
-        conf.appwriteUsersCollectionId,
-        [Query.notEqual("accountId", accountId), Query.limit(6)]
+        conf.appwriteUsersCollectionId
       );
       return currentUserData.documents;
     } catch (error) {
@@ -226,12 +237,12 @@ export class Service {
     }
   }
 
-  async addFriend({ userId, friendId,name }) {
+  async addFriend({ userId, friendId }) {
     console.log("called");
     console.log("userId: ", userId);
     console.log("friend: ", friendId);
     try {
-      const adding = await this.databases.createDocument(conf.appwriteDatabaseId,conf.appwriteFriendsCollectionId,ID.unique(),{user: userId, friendId: friendId, username:name})
+      const adding = await this.databases.createDocument(conf.appwriteDatabaseId,conf.appwriteFriendsCollectionId,ID.unique(),{user: userId, friendId: friendId})
       console.log(adding);
       return adding;
     } catch (error) {

@@ -9,11 +9,8 @@ import Style from "../../components/ProfilePage/ProfilePage.module.css";
 import { FaFaceLaugh } from "react-icons/fa6";
 import CreatePost from "../../components/createpost/CreatePost";
 import PostForm from "../../components/postform/PostForm";
-import service from "../../appwrite/config";
 import { FadeLoader } from "react-spinners";
 const Home = () => {
-  const [loader, setloader] = useState(false);
-  const [posts, setPosts] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [clicked, setClicked] = useState("hide");
   const closeModal = () => {
@@ -22,21 +19,23 @@ const Home = () => {
   const navigate = useNavigate();
   const authStatus = useSelector((state) => state.auth.status);
   const userData = useSelector((state) => state.auth.userData);
-  // console.log(userData);
+  const Allposts = useSelector((state) => state.post.posts);
+  const posts = Allposts.filter((post) => post.status == "public");
+  // console.log(posts);
   useEffect(() => {
     if (!authStatus) {
       navigate("/login");
     }
-    fetch();
+    // fetch();
   }, [authStatus, navigate]);
 
-  async function fetch() {
-    setloader(true);
-    let response = await service.fetchPublicPost();
-    setPosts(response);
-    // console.log(response);
-    setloader(false);
-  }
+  // async function fetch() {
+  //   // setloader(true);
+  //   let response = await service.fetchPublicPost();
+  //   setPosts(response);
+  //   // console.log(response);
+  //   // setloader(false);
+  // }
 
   return (
     <div className="w-full bg-[rgba(236,238,240,1)] min-w-[470px] min-h-[100lvh]">
@@ -105,7 +104,7 @@ const Home = () => {
             <CreatePost userData={userData} closeModal={closeModal} />
           )}
           <div className="">
-            {loader ? (
+            {!posts ? (
               <div className="flex justify-center items-center h-40">
                 <FadeLoader color="#0000ff" />
                 <p className="text-lg ml-4 text-blue-500">Loading...</p>

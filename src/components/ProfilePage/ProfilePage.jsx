@@ -24,7 +24,11 @@ const ProfilePage = () => {
   const [cloader, setCloader] = useState(false);
   const authStatus = useSelector((state) => state.auth.status);
   const userData = useSelector((state) => state.auth.userData);
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
+  const Allposts = useSelector((state) => state.post.posts);
+  const posts = Allposts.filter(
+    (post) => post.creator.accountId == userData.accountId
+  );
 
   const closeModal = () => {
     return setShowModal(false);
@@ -33,7 +37,7 @@ const ProfilePage = () => {
     if (!authStatus) {
       navigate("/login");
     }
-    fetch();
+    // fetch();
   }, [authStatus, navigate]);
 
   const handleInputClick = () => {
@@ -98,13 +102,13 @@ const ProfilePage = () => {
     }
   };
 
-  async function fetch() {
-    setloader(true);
-    let response = await service.fetchProfilePost(userData.$id);
-    setPosts(response);
-    // console.log(response);
-    setloader(false);
-  }
+  // async function fetch() {
+  //   setloader(true);
+  //   let response = await service.fetchProfilePost(userData.$id);
+  //   setPosts(response);
+  //   // console.log(response);
+  //   setloader(false);
+  // }
   return (
     <div className="w-full bg-[rgba(236,238,240,1)] min-w-[470px]">
       {/* navbar starts*/}
