@@ -1,8 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Temp = ({ user }) => {
+  const navigate = useNavigate();
   const handleMessagePage = (e, user) => {
-    console.log(user);
+    // console.log(user);
+    navigate(`/message/${user.accountId}`);
   };
   return (
     <div

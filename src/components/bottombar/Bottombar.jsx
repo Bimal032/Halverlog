@@ -23,8 +23,14 @@ const Bottombar = ({ userData }) => {
             className={location.pathname == "/message" ? "activate" : "active"}
           />
         </Link>
-        <Link to="#" className="bottombtn">
-          <FaBell size={25} color="grey" className="active" />
+        <Link to="/notification" className="bottombtn">
+          <FaBell
+            size={25}
+            color="grey"
+            className={
+              location.pathname == "/notification" ? "activate" : "active"
+            }
+          />
         </Link>
         <Link to="/friends" className="bottombtn">
           <FaUsers

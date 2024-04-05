@@ -71,8 +71,13 @@ const Navbar = ({ userData, clicked, setClicked }) => {
             className={location.pathname == "/message" ? "activate" : "active"}
           />
         </Link>
-        <Link to="#" className="navbtn">
-          <FaBell size={20} className="active" />
+        <Link to="/notification" className="navbtn">
+          <FaBell
+            size={20}
+            className={
+              location.pathname == "/notification" ? "activate" : "active"
+            }
+          />
         </Link>
         <Link to="/friends" className="navbtn">
           <FaUsers

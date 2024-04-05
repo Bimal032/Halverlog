@@ -13,6 +13,9 @@ import store from "./store/store.js";
 import SearchPage from "./components/searchpage/SearchPage.jsx";
 import Friends from "./components/friendpage/Friends.jsx";
 import Message from "./components/message/message.jsx";
+import Room from "./pages/message/Room.jsx";
+import Layout from "./components/layout/Layout.jsx";
+import Notification from "./pages/notification/Notification.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -46,6 +49,22 @@ const router = createBrowserRouter([
       {
         path: "/message",
         element: <Message />,
+      },
+      {
+        path: "/message/:id",
+        element: (
+          <Layout>
+            <Room />
+          </Layout>
+        ),
+      },
+      {
+        path: "/notification",
+        element: (
+          <Layout>
+            <Notification />
+          </Layout>
+        ),
       },
     ],
   },
