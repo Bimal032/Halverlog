@@ -253,7 +253,7 @@ export class Service {
     console.log("called");
     try {
       const adding = await this.databases.createDocument(conf.appwriteDatabaseId,conf.appwriteMessageCollectionId,ID.unique(),payload)
-      console.log(adding);
+      // console.log(adding);
       return adding;
     } catch (error) {
       console.log("service : addingMessage() :: ", error);

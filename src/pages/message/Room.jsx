@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { IoSend } from "react-icons/io5";
 import service from "../../appwrite/config";
+import conf from "../../conf/conf";
+import client from "../../conf/realtimeConf";
 
 const Room = () => {
   const { id } = useParams();
@@ -22,6 +24,33 @@ const Room = () => {
   const identification2 = user[0].accountId + userData.accountId;
   useEffect(() => {
     gettingMessage();
+    const unsubscribe = client.subscribe(
+      `databases.${conf.appwriteDatabaseId}.collections.${conf.appwriteMessageCollectionId}.documents`,
+      (response) => {
+        // Callback will be executed on changes for documents A and all files.
+        // console.log("REAL TIME:", response);
+        if (
+          response.events.includes(
+            "databases.*.collections.*.documents.*.create"
+          )
+        ) {
+          console.log(" a message created");
+          gettingMessage();
+        }
+        if (
+          response.events.includes(
+            "databases.*.collections.*.documents.*.delete"
+          )
+        ) {
+          console.log(" a message deleted");
+          gettingMessage();
+        }
+      }
+    );
+    console.log("unsubscribe : ", unsubscribe);
+    return () => {
+      unsubscribe();
+    };
   }, []);
   //   console.log(user);
   //   console.log(identification);
@@ -29,14 +58,14 @@ const Room = () => {
   const handleSubmit = async () => {
     const payload = {
       body: messageBody,
-      user_id: user[0].$id,
-      username: user[0].name,
+      user_id: userData.$id,
+      username: userData.name,
       user_receiver_id: identification1,
     };
     const resp = await service.addMessage(payload);
     if (resp) {
       setMessageBody("");
-      gettingMessage();
+      //   gettingMessage();
     }
   };
   const gettingMessage = async () => {
@@ -84,7 +113,9 @@ const Room = () => {
                 key={message.$id}
                 className={
                   "flex flex-col " +
-                  (message.user_id == user[0].$id ? "items-start" : "items-end")
+                  (message.user_id == userData.$id
+                    ? "items-start"
+                    : "items-end")
                 }
               >
                 <div>
@@ -98,7 +129,7 @@ const Room = () => {
                 <div
                   className={
                     "w-fit p-2 text-white text-md rounded-lg " +
-                    (message.user_id == user[0].$id
+                    (message.user_id == userData.$id
                       ? "bg-green-500"
                       : "bg-gray-500")
                   }
