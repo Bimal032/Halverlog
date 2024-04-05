@@ -249,6 +249,27 @@ export class Service {
       console.log("service : addingFriend() :: ", error);
     }
   }
+  async addMessage(payload) {
+    console.log("called");
+    try {
+      const adding = await this.databases.createDocument(conf.appwriteDatabaseId,conf.appwriteMessageCollectionId,ID.unique(),payload)
+      console.log(adding);
+      return adding;
+    } catch (error) {
+      console.log("service : addingMessage() :: ", error);
+    }
+  }
+  async getMessage(identification1,identification2){
+    try{
+      const response=await this.databases.listDocuments(
+        conf.appwriteDatabaseId,
+        conf.appwriteMessageCollectionId,
+        [Query.orderDesc("$createdAt"), Query.equal("user_receiver_id",[identification1,identification2])]);
+        return response;
+    }catch(error){
+      console.log("service : getMessage() :: ", error);
+    }
+  }
 }
 
 const service = new Service();
