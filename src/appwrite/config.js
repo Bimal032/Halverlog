@@ -238,12 +238,12 @@ export class Service {
   }
 
   async addFriend({ userId, friendId }) {
-    console.log("called");
-    console.log("userId: ", userId);
-    console.log("friend: ", friendId);
+    // console.log("called");
+    // console.log("userId: ", userId);
+    // console.log("friend: ", friendId);
     try {
       const adding = await this.databases.createDocument(conf.appwriteDatabaseId,conf.appwriteFriendsCollectionId,ID.unique(),{user: userId, friendId: friendId})
-      console.log(adding);
+      // console.log(adding);
       return adding;
     } catch (error) {
       console.log("service : addingFriend() :: ", error);

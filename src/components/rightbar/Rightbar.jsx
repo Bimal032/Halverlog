@@ -97,7 +97,9 @@ const Rightbar = ({ userData }) => {
       <div className="flex flex-col bg-white rounded-3xl p-4 mt-6 shadow-[-5px_-5px_10px_0px_rgba(255,255,255,1),5px_5px_27px_0px_rgba(0,0,0,0.31)]">
         <div className="flex justify-between p-2">
           <span className="font-bold text-lg">Suggestions</span>
-          <span className="text-sm">see all</span>
+          <span className="text sm active">
+            <Link to="/suggestion">see all</Link>
+          </span>
         </div>
         <div className="flex flex-col px-4 mt-2 gap-6 max-h-[20rem] overflow-y-auto">
           {/* Suggestion list start*/}

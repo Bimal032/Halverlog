@@ -20,7 +20,11 @@ const Bottombar = ({ userData }) => {
           <BsChatDotsFill
             size={25}
             color="grey"
-            className={location.pathname == "/message" ? "activate" : "active"}
+            className={
+              location.pathname == ("/message" || "/message/:id")
+                ? "activate"
+                : "active"
+            }
           />
         </Link>
         <Link to="/notification" className="bottombtn">

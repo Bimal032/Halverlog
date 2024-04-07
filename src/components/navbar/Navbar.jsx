@@ -68,7 +68,11 @@ const Navbar = ({ userData, clicked, setClicked }) => {
         <Link to="/message" className="navbtn">
           <BsChatDotsFill
             size={20}
-            className={location.pathname == "/message" ? "activate" : "active"}
+            className={
+              location.pathname == ("/message" || "/message/:id")
+                ? "activate"
+                : "active"
+            }
           />
         </Link>
         <Link to="/notification" className="navbtn">

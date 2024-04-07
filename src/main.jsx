@@ -16,6 +16,7 @@ import Message from "./components/message/message.jsx";
 import Room from "./pages/message/Room.jsx";
 import Layout from "./components/layout/Layout.jsx";
 import Notification from "./pages/notification/Notification.jsx";
+import Suggestion from "./pages/suggestion/Suggestion.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,7 +37,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/search",
-        element: <SearchPage />,
+        element: (
+          <Layout>
+            <SearchPage />
+          </Layout>
+        ),
       },
       {
         path: "/profile/:id",
@@ -44,11 +49,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/friends",
-        element: <Friends />,
+        element: (
+          <Layout>
+            <Friends />
+          </Layout>
+        ),
       },
       {
         path: "/message",
-        element: <Message />,
+        element: (
+          <Layout>
+            <Message />
+          </Layout>
+        ),
       },
       {
         path: "/message/:id",
@@ -63,6 +76,14 @@ const router = createBrowserRouter([
         element: (
           <Layout>
             <Notification />
+          </Layout>
+        ),
+      },
+      {
+        path: "/suggestion",
+        element: (
+          <Layout>
+            <Suggestion />
           </Layout>
         ),
       },

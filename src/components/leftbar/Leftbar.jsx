@@ -6,7 +6,7 @@ import { PiVideoFill } from "react-icons/pi";
 import Style from "./leftbar.module.css";
 import "./leftbar.css";
 import service from "../../appwrite/config";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Leftbar = ({ userData, clicked }) => {
   const location = useLocation();
@@ -83,7 +83,9 @@ const Leftbar = ({ userData, clicked }) => {
           </button>
           <button className="sbutton">
             <FaUsers size={25} className="active" />
-            <span className="text-lg ml-2 active">Groups</span>
+            <span className="text-lg ml-2 active">
+              <Link to="/suggestion">Suggestion</Link>
+            </span>
           </button>
           <button className="sbutton">
             <PiVideoFill size={25} className="active" />
