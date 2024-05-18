@@ -43,7 +43,7 @@ const Navbar = ({ userData, clicked, setClicked }) => {
         <IoMdSearch size={20} />
         <input
           type="text"
-          className="w-[80%] bg-inherit ml-2 pl-2 text-sm h-1/2 outline-none active"
+          className="w-[80%] ml-2 pl-2 text-sm h-1/2 outline-none active bg-transparent"
           placeholder="search"
           onClick={handleSearch}
         />
