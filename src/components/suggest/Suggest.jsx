@@ -1,4 +1,5 @@
 import React from "react";
+import service from "../../appwrite/config";
 
 const Suggest = ({ user, handleFriend }) => {
   return (
