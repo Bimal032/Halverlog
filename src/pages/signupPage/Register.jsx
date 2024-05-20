@@ -80,7 +80,7 @@ const Register = () => {
               className="outline-none bg-inherit mx-3 w-[85%]"
               {...register("email", {
                 required: true,
-                pattern: /^([^\s@]+@[^\s@]+\.[^\s@]+)$/,
+                pattern: /^([^\s@]+@[^\s@]+\.)(google\.com|yahoo\.com)$/,
               })}
             />
           </div>
